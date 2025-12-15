@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+#root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Snow Ball Loading Spinner Animations */
+@keyframes ball {
+    from {
+        transform: rotate(0) translateY(-6.5em);
+    }
+
+    50% {
+        transform: rotate(180deg) translateY(-6em);
+    }
+
+    to {
+        transform: rotate(360deg) translateY(-6.5em);
+    }
+}
+
+@keyframes ballInnerShadow {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes ballOuterShadow {
+    from {
+        transform: rotate(20deg);
+    }
+
+    to {
+        transform: rotate(-340deg);
+    }
+}
+
+@keyframes ballTexture {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(50%);
+    }
+}
+
+@keyframes trackCover {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Snow Ball Spinner Styles */
+.pl {
+    display: block;
+    width: 9.375em;
+    height: 9.375em;
+}
+
+.pl__ball,
+.pl__ball-inner-shadow,
+.pl__ball-outer-shadow,
+.pl__ball-side-shadows,
+.pl__ball-texture,
+.pl__inner-ring,
+.pl__outer-ring,
+.pl__track-cover {
+    position: absolute;
+}
+
+.pl__ball {
+    animation: ball 3s ease-in-out infinite;
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    width: 3em;
+    height: 3em;
+    margin-left: -1.5em;
+    transform: rotate(0) translateY(-6.5em);
+}
+
+.pl__ball-inner-shadow,
+.pl__ball-outer-shadow,
+.pl__ball-side-shadows {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pl__ball-inner-shadow {
+    animation-name: ballInnerShadow;
+    animation-timing-function: ease-in-out;
+    background: radial-gradient(circle at 75% 25%,
+            hsla(var(--hue), 10%, 85%, 0),
+            hsl(var(--hue), 10%, 50%) 50%);
+    transform: rotate(0);
+    z-index: 1;
+}
+
+.pl__ball-outer-shadow {
+    animation-name: ballOuterShadow;
+    animation-timing-function: linear;
+    background: linear-gradient(90deg,
+            hsla(var(--hue), 10%, 10%, 0.1) 12.5%,
+            hsla(var(--hue), 10%, 10%, 0.3) 37.5%,
+            hsla(var(--hue), 10%, 10%, 0.5) 50%,
+            hsla(var(--hue), 10%, 10%, 0.3) 62.5%,
+            hsla(var(--hue), 10%, 10%, 0.1) 87.5%);
+    filter: blur(0.125em);
+    transform: rotate(20deg);
+    z-index: -1;
+}
+
+.pl__ball-side-shadows {
+    animation-name: ball;
+    animation-timing-function: ease-in-out;
+    background: linear-gradient(0deg,
+            hsl(var(--hue), 10%, 10%) 50%,
+            hsla(var(--hue), 10%, 10%, 0) 100%);
+    filter: blur(0.25em);
+    opacity: 0.5;
+    transform: rotate(0) translateY(-6.5em);
+    z-index: -2;
+}
+
+.pl__ball-texture {
+    animation: ballTexture 3s linear infinite;
+    background: linear-gradient(hsla(var(--hue), 10%, 10%, 0) 12.5%,
+            hsla(var(--hue), 10%, 10%, 0.25) 25%,
+            hsla(var(--hue), 10%, 10%, 0) 37.5%);
+    background-size: 200% 100%;
+    background-position: 0 0;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+}
+
+.pl__inner-ring,
+.pl__outer-ring,
+.pl__track-cover {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+}
+
+.pl__inner-ring {
+    background: linear-gradient(90deg,
+            hsl(var(--hue), 10%, 70%) 12.5%,
+            hsl(var(--hue), 10%, 60%) 25%,
+            hsl(var(--hue), 10%, 50%) 37.5%,
+            hsl(var(--hue), 10%, 60%) 50%,
+            hsl(var(--hue), 10%, 70%) 62.5%,
+            hsl(var(--hue), 10%, 80%) 75%,
+            hsl(var(--hue), 10%, 90%) 87.5%,
+            hsl(var(--hue), 10%, 80%));
+    box-shadow:
+        0 0 0 0.125em hsla(var(--hue), 10%, 10%, 0.2) inset,
+        0 0 0 0.25em hsla(var(--hue), 10%, 10%, 0.2) inset;
+    width: 13.5em;
+    height: 13.5em;
+    margin-top: -6.75em;
+    margin-left: -6.75em;
+    z-index: -3;
+}
+
+.pl__outer-ring {
+    background: linear-gradient(90deg,
+            hsl(var(--hue), 10%, 80%) 12.5%,
+            hsl(var(--hue), 10%, 70%) 25%,
+            hsl(var(--hue), 10%, 60%) 37.5%,
+            hsl(var(--hue), 10%, 70%) 50%,
+            hsl(var(--hue), 10%, 80%) 62.5%,
+            hsl(var(--hue), 10%, 90%) 75%,
+            hsl(var(--hue), 10%, 100%) 87.5%,
+            hsl(var(--hue), 10%, 90%));
+    width: 15em;
+    height: 15em;
+    margin-top: -7.5em;
+    margin-left: -7.5em;
+    z-index: -4;
+}
+
+.pl__track-cover {
+    animation-name: trackCover;
+    animation-timing-function: linear;
+    background-image: linear-gradient(0deg,
+            hsla(var(--hue), 10%, 10%, 0) 25%,
+            hsl(var(--hue), 10%, 10%) 50%,
+            hsl(var(--hue), 10%, 10%) 75%,
+            hsla(var(--hue), 10%, 10%, 0));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    transform: rotate(0);
+    z-index: -5;
+}
+
+/* Gold theme for Lavora Design */
+:root {
+    --hue: 45;
+}

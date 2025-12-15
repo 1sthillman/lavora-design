@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /products/
+Allow: /gallery/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+Sitemap: https://lavoradesign.com/sitemap.xml
