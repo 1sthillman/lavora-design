@@ -155,6 +155,39 @@ const Products = () => {
         setSearchParams({});
     };
 
+    const handleGetQuote = (product: Product) => {
+        // Ürün bilgilerini hazırla
+        const productName = product.name;
+        const productCategory = product.category;
+        const productDescription = product.description;
+        
+        // GitHub Pages'deki tam görsel URL'si
+        const productImageUrl = product.image.startsWith('http') 
+            ? product.image 
+            : `https://1sthillman.github.io${product.image}`;
+        
+        // WhatsApp mesaj metni
+        const message = `Merhaba Lavora Design,
+
+*${productName}* hakkında teklif almak istiyorum.
+
+📦 Kategori: ${productCategory}
+📝 Açıklama: ${productDescription}
+
+🖼️ Ürün Görseli: ${productImageUrl}
+
+Detaylı bilgi ve fiyat teklifi alabilir miyim?`;
+
+        // WhatsApp numarası (ülke kodu ile)
+        const phoneNumber = '905375803296';
+        
+        // WhatsApp link oluştur
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        
+        // WhatsApp'ı yeni pencerede aç
+        window.open(whatsappUrl, '_blank');
+    };
+
     const filteredProducts = products.filter((product) => {
         const matchesCategory = selectedCategory === 'Tümü' || product.category === selectedCategory;
         const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -356,7 +389,11 @@ const Products = () => {
                                         </div>
                                     </div>
 
-                                    <button className="w-full mt-8 px-8 py-4 bg-gold-DEFAULT text-[#0A0A0A] font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50">
+                                    <button 
+                                        onClick={() => handleGetQuote(selectedProduct)}
+                                        className="w-full mt-8 px-8 py-4 bg-gold-DEFAULT text-[#0A0A0A] font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50 flex items-center justify-center gap-2"
+                                    >
+                                        <i className="ri-whatsapp-line text-xl"></i>
                                         Teklif Al
                                     </button>
                                 </div>
