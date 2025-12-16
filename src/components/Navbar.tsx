@@ -119,7 +119,8 @@ const Navbar = () => {
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden w-8 h-8 sm:w-9 sm:h-9 flex flex-col items-center justify-center gap-1 flex-shrink-0"
-                            aria-label="Menu"
+                            aria-label={isMobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+                            aria-expanded={isMobileMenuOpen}
                         >
                             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
                             <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>

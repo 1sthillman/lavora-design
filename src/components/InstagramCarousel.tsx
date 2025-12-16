@@ -80,11 +80,12 @@ export function InstagramCarousel() {
                     {/* İlk Set - Asıl İçerik */}
                     <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
                         {posts.map((post, i) => (
-                                <button
-                                    key={`set1-${i}`}
-                                    onClick={() => setSelectedPost(post)}
-                                    className="group/card relative flex-none w-[280px] sm:w-[320px] md:w-[350px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
-                                >
+                            <button
+                                key={`set1-${i}`}
+                                onClick={() => setSelectedPost(post)}
+                                className="group/card relative flex-none w-[280px] sm:w-[320px] md:w-[350px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
+                                aria-label={`Instagram ${post.type} içeriğini görüntüle`}
+                            >
                                     {/* Instagram Preview Embed */}
                                     <div className="relative w-full h-full">
                                         <iframe
@@ -168,8 +169,9 @@ export function InstagramCarousel() {
                         <button
                             onClick={() => setSelectedPost(null)}
                             className="absolute top-4 right-4 z-10 w-12 h-12 bg-black/80 hover:bg-black rounded-full flex items-center justify-center transition-all"
+                            aria-label="Instagram içeriğini kapat"
                         >
-                            <i className="ri-close-line text-2xl text-white"></i>
+                            <i className="ri-close-line text-2xl text-white" aria-hidden="true"></i>
                         </button>
 
                         <div className="p-6">

@@ -172,7 +172,10 @@ const Gallery = () => {
                         className="fixed inset-0 z-[9999] bg-black/98 flex items-center justify-center p-4"
                         onClick={() => setSelectedImage(null)}
                     >
-                        <button className="absolute top-6 sm:top-8 right-6 sm:right-8 z-[110] text-white/50 hover:text-white transition-colors group">
+                        <button 
+                            className="absolute top-6 sm:top-8 right-6 sm:right-8 z-[110] text-white/50 hover:text-white transition-colors group"
+                            aria-label="Galeriyi kapat"
+                        >
                             <span className="text-[10px] uppercase tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">Kapat</span>
                             <i className="ri-close-line text-3xl sm:text-4xl"></i>
                         </button>
@@ -193,8 +196,9 @@ const Gallery = () => {
                             <button 
                                 onClick={() => handleGetQuote(selectedImage)}
                                 className="mt-6 px-8 py-4 bg-gold-DEFAULT text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light hover:scale-105 transition-all duration-300 shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50 flex items-center justify-center gap-2"
+                                aria-label={`${selectedImage.title} için WhatsApp'tan teklif al`}
                             >
-                                <i className="ri-whatsapp-line text-xl"></i>
+                                <i className="ri-whatsapp-line text-xl" aria-hidden="true"></i>
                                 Teklif Al
                             </button>
                         </motion.div>

@@ -18,8 +18,28 @@ export default defineConfig({
     ],
     base,
     build: {
-        sourcemap: true,
+        sourcemap: false, // Production'da sourcemap'i kapat
         outDir: "out",
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true, // console.log'ları kaldır
+                drop_debugger: true,
+            },
+        },
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+                    'framer-motion': ['framer-motion'],
+                },
+                chunkFileNames: 'assets/js/[name]-[hash].js',
+                entryFileNames: 'assets/js/[name]-[hash].js',
+                assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+            },
+        },
+        cssCodeSplit: true,
+        assetsInlineLimit: 4096, // 4kb'den küçük dosyaları inline yap
     },
     resolve: {
         alias: {
