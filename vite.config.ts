@@ -2,12 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "node:path";
 
-// GitHub Pages için base path ayarı
-// Repository adı: lavora-design
-const base = process.env.BASE_PATH || 
-  (process.env.GITHUB_REPOSITORY 
-    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` 
-    : "/lavora-design/");
+const base = process.env.BASE_PATH || "/";
 const isPreview = process.env.IS_PREVIEW ? true : false;
 
 export default defineConfig({

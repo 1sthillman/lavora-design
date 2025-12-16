@@ -48,6 +48,15 @@ jobs:
           touch out/.nojekyll
           echo "Jekyll processing disabled" > out/.nojekyll
 
+      - name: Verify images and videos exist
+        run: |
+          echo "Checking for images and videos..."
+          ls -la out/ || true
+          ls -la out/images/ || true
+          ls -la out/videos/ || true
+          echo "Total files in out:"
+          find out -type f | wc -l
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
