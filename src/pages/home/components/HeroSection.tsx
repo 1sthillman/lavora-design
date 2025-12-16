@@ -1,17 +1,18 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { getVideoPath } from '../../../lib/assetPath';
-
-const videos = [
-    getVideoPath("/videos/Whisk_mzjm0e2mlzjmjjwntqdo2gtlmjjy00cmirgotet.mp4"),
-    getVideoPath("/videos/Whisk_ymwnlftn4mwyzgjmtudnkltl1qwy00cmyadotqt.mp4"),
-    getVideoPath("/videos/lv_0_20251214215935.mp4"),
-    getVideoPath("/videos/lv_0_20251214230758.mp4")
-];
 
 const HeroSection = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentVideo, setCurrentVideo] = useState(0);
+
+    // Generate video paths at runtime, not build time
+    const videos = useMemo(() => [
+        getVideoPath("/videos/Whisk_mzjm0e2mlzjmjjwntqdo2gtlmjjy00cmirgotet.mp4"),
+        getVideoPath("/videos/Whisk_ymwnlftn4mwyzgjmtudnkltl1qwy00cmyadotqt.mp4"),
+        getVideoPath("/videos/lv_0_20251214215935.mp4"),
+        getVideoPath("/videos/lv_0_20251214230758.mp4")
+    ], []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -27,7 +28,7 @@ const HeroSection = () => {
             setCurrentVideo((prev) => (prev + 1) % videos.length);
         }, 8000); // Change video every 8 seconds
         return () => clearInterval(timer);
-    }, []);
+    }, [videos]);
 
     return (
         <div ref={containerRef} className="relative h-screen overflow-hidden w-full max-w-full bg-[#0A0A0A]">

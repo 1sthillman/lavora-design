@@ -8,53 +8,59 @@ import { getImagePath } from '../../lib/assetPath';
 
 const categories = ['Tümü', 'Mutfak', 'Salon', 'Yatak Odası', 'Ofis', 'Duvar Tasarım'];
 
-// Real Gallery Data from asset folder
-const galleryData = [
+// Real Gallery Data - Store raw paths, apply getImagePath at runtime
+const rawGalleryData = [
     // SALON
-    { id: 101, title: "Modern Villa Lounge", category: "Salon", height: "h-[400px]", image: getImagePath("/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg") },
-    { id: 102, title: "Dark Velvet Sofa", category: "Salon", height: "h-[300px]", image: getImagePath("/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg") },
-    { id: 103, title: "Italian Leather Living", category: "Salon", height: "h-[500px]", image: getImagePath("/images/salon/3e978f7b380e102f014e4b780158564b.jpg") },
-    { id: 104, title: "Minimalist Beige Room", category: "Salon", height: "h-[350px]", image: getImagePath("/images/salon/5ab571e66ee70b434a230d65b5d096db.jpg") },
-    { id: 105, title: "Luxury Penthouse", category: "Salon", height: "h-[450px]", image: getImagePath("/images/salon/7289417b31c47191b99e5d4586e316c3.jpg") },
-    { id: 106, title: "Contemporary Fireplace", category: "Salon", height: "h-[400px]", image: getImagePath("/images/salon/8a6a40625ab22c183d22850b8e8b01d0.jpg") },
-    { id: 107, title: "Premium Living Space", category: "Salon", height: "h-[300px]", image: getImagePath("/images/salon/90b527b3d2654b5614a9255927c03dc5.jpg") },
-    { id: 108, title: "Executive Lounge", category: "Salon", height: "h-[350px]", image: getImagePath("/images/salon/93883842b476b92bd499904a6549aac3.jpg") },
-    { id: 109, title: "Classic Salon", category: "Salon", height: "h-[450px]", image: getImagePath("/images/salon/dedec35cef5f6c54d41c695525f540e0.jpg") },
+    { id: 101, title: "Modern Villa Lounge", category: "Salon", height: "h-[400px]", imagePath: "/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg" },
+    { id: 102, title: "Dark Velvet Sofa", category: "Salon", height: "h-[300px]", imagePath: "/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg" },
+    { id: 103, title: "Italian Leather Living", category: "Salon", height: "h-[500px]", imagePath: "/images/salon/3e978f7b380e102f014e4b780158564b.jpg" },
+    { id: 104, title: "Minimalist Beige Room", category: "Salon", height: "h-[350px]", imagePath: "/images/salon/5ab571e66ee70b434a230d65b5d096db.jpg" },
+    { id: 105, title: "Luxury Penthouse", category: "Salon", height: "h-[450px]", imagePath: "/images/salon/7289417b31c47191b99e5d4586e316c3.jpg" },
+    { id: 106, title: "Contemporary Fireplace", category: "Salon", height: "h-[400px]", imagePath: "/images/salon/8a6a40625ab22c183d22850b8e8b01d0.jpg" },
+    { id: 107, title: "Premium Living Space", category: "Salon", height: "h-[300px]", imagePath: "/images/salon/90b527b3d2654b5614a9255927c03dc5.jpg" },
+    { id: 108, title: "Executive Lounge", category: "Salon", height: "h-[350px]", imagePath: "/images/salon/93883842b476b92bd499904a6549aac3.jpg" },
+    { id: 109, title: "Classic Salon", category: "Salon", height: "h-[450px]", imagePath: "/images/salon/dedec35cef5f6c54d41c695525f540e0.jpg" },
 
     // MUTFAK
-    { id: 201, title: "Marble Island Kitchen", category: "Mutfak", height: "h-[500px]", image: getImagePath("/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg") },
-    { id: 202, title: "Dark Noir Cabinetry", category: "Mutfak", height: "h-[350px]", image: getImagePath("/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg") },
-    { id: 203, title: "Chef's Dream", category: "Mutfak", height: "h-[400px]", image: getImagePath("/images/mutfak-görsel/6eaca09af50be3e224e066f1d06c10ab.jpg") },
-    { id: 204, title: "Minimal Kitchen", category: "Mutfak", height: "h-[300px]", image: getImagePath("/images/mutfak-görsel/75475696254d72baebcf235ed19f1b7d.jpg") },
-    { id: 205, title: "Industrial Kitchen", category: "Mutfak", height: "h-[450px]", image: getImagePath("/images/mutfak-görsel/98cb00646c145981ec077db90a7e7217.jpg") },
-    { id: 206, title: "Open Plan Dining", category: "Mutfak", height: "h-[350px]", image: getImagePath("/images/mutfak-görsel/ac2ecb14623202cc8a099a3b968d7978.jpg") },
-    { id: 207, title: "Luxury Kitchen", category: "Mutfak", height: "h-[400px]", image: getImagePath("/images/mutfak-görsel/c162ea3a1da8980cf7c1689fedd268f7.jpg") },
-    { id: 208, title: "Modern Cuisine", category: "Mutfak", height: "h-[500px]", image: getImagePath("/images/mutfak-görsel/c4100faed51ad904824c744cb668eec3.jpg") },
+    { id: 201, title: "Marble Island Kitchen", category: "Mutfak", height: "h-[500px]", imagePath: "/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg" },
+    { id: 202, title: "Dark Noir Cabinetry", category: "Mutfak", height: "h-[350px]", imagePath: "/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg" },
+    { id: 203, title: "Chef's Dream", category: "Mutfak", height: "h-[400px]", imagePath: "/images/mutfak-görsel/6eaca09af50be3e224e066f1d06c10ab.jpg" },
+    { id: 204, title: "Minimal Kitchen", category: "Mutfak", height: "h-[300px]", imagePath: "/images/mutfak-görsel/75475696254d72baebcf235ed19f1b7d.jpg" },
+    { id: 205, title: "Industrial Kitchen", category: "Mutfak", height: "h-[450px]", imagePath: "/images/mutfak-görsel/98cb00646c145981ec077db90a7e7217.jpg" },
+    { id: 206, title: "Open Plan Dining", category: "Mutfak", height: "h-[350px]", imagePath: "/images/mutfak-görsel/ac2ecb14623202cc8a099a3b968d7978.jpg" },
+    { id: 207, title: "Luxury Kitchen", category: "Mutfak", height: "h-[400px]", imagePath: "/images/mutfak-görsel/c162ea3a1da8980cf7c1689fedd268f7.jpg" },
+    { id: 208, title: "Modern Cuisine", category: "Mutfak", height: "h-[500px]", imagePath: "/images/mutfak-görsel/c4100faed51ad904824c744cb668eec3.jpg" },
 
     // YATAK ODASI
-    { id: 301, title: "Master Suite", category: "Yatak Odası", height: "h-[400px]", image: getImagePath("/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg") },
-    { id: 302, title: "Cozy Linen Bed", category: "Yatak Odası", height: "h-[450px]", image: getImagePath("/images/yatak odası/4650c4e9e72bb127e0782992fb326570.jpg") },
-    { id: 303, title: "Hotel Style Bedroom", category: "Yatak Odası", height: "h-[350px]", image: getImagePath("/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg") },
-    { id: 304, title: "Dark Tone Bedroom", category: "Yatak Odası", height: "h-[500px]", image: getImagePath("/images/yatak odası/63c264ac6f904920bdf67b384e29a49c.jpg") },
-    { id: 305, title: "Minimalist Sleep", category: "Yatak Odası", height: "h-[300px]", image: getImagePath("/images/yatak odası/80f3de31c6ec080fcd8626047e8bfe3a.jpg") },
-    { id: 306, title: "Premium Bedroom", category: "Yatak Odası", height: "h-[400px]", image: getImagePath("/images/yatak odası/8616a57a0afdda27d3ca47ea4f03052b.jpg") },
-    { id: 307, title: "Classic Bedroom", category: "Yatak Odası", height: "h-[350px]", image: getImagePath("/images/yatak odası/87d282ff5121d8323209f6702e73d63e.jpg") },
-    { id: 308, title: "Modern Bedroom", category: "Yatak Odası", height: "h-[450px]", image: getImagePath("/images/yatak odası/90112476f4e8a28707c0c6b6f119f3df.jpg") },
+    { id: 301, title: "Master Suite", category: "Yatak Odası", height: "h-[400px]", imagePath: "/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg" },
+    { id: 302, title: "Cozy Linen Bed", category: "Yatak Odası", height: "h-[450px]", imagePath: "/images/yatak odası/4650c4e9e72bb127e0782992fb326570.jpg" },
+    { id: 303, title: "Hotel Style Bedroom", category: "Yatak Odası", height: "h-[350px]", imagePath: "/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg" },
+    { id: 304, title: "Dark Tone Bedroom", category: "Yatak Odası", height: "h-[500px]", imagePath: "/images/yatak odası/63c264ac6f904920bdf67b384e29a49c.jpg" },
+    { id: 305, title: "Minimalist Sleep", category: "Yatak Odası", height: "h-[300px]", imagePath: "/images/yatak odası/80f3de31c6ec080fcd8626047e8bfe3a.jpg" },
+    { id: 306, title: "Premium Bedroom", category: "Yatak Odası", height: "h-[400px]", imagePath: "/images/yatak odası/8616a57a0afdda27d3ca47ea4f03052b.jpg" },
+    { id: 307, title: "Classic Bedroom", category: "Yatak Odası", height: "h-[350px]", imagePath: "/images/yatak odası/87d282ff5121d8323209f6702e73d63e.jpg" },
+    { id: 308, title: "Modern Bedroom", category: "Yatak Odası", height: "h-[450px]", imagePath: "/images/yatak odası/90112476f4e8a28707c0c6b6f119f3df.jpg" },
 
     // DUVAR TASARIM
-    { id: 401, title: "Floating TV Unit", category: "Duvar Tasarım", height: "h-[300px]", image: getImagePath("/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg") },
-    { id: 402, title: "Library Wall", category: "Duvar Tasarım", height: "h-[450px]", image: getImagePath("/images/duvar ünite/44383f98ed663ce4418e6560dc5350a6.jpg") },
-    { id: 403, title: "Cinematic Wall", category: "Duvar Tasarım", height: "h-[350px]", image: getImagePath("/images/duvar ünite/59aa69eca6f5c78c2a56caa0a8148e90.jpg") },
-    { id: 404, title: "Premium Wall Unit", category: "Duvar Tasarım", height: "h-[400px]", image: getImagePath("/images/duvar ünite/8b5bba9055a1aa001679b0b54e195ec4.jpg") },
-    { id: 405, title: "Modern TV Console", category: "Duvar Tasarım", height: "h-[500px]", image: getImagePath("/images/duvar ünite/a3babff3c7de3a8bcaefbab548492aa3.jpg") },
+    { id: 401, title: "Floating TV Unit", category: "Duvar Tasarım", height: "h-[300px]", imagePath: "/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg" },
+    { id: 402, title: "Library Wall", category: "Duvar Tasarım", height: "h-[450px]", imagePath: "/images/duvar ünite/44383f98ed663ce4418e6560dc5350a6.jpg" },
+    { id: 403, title: "Cinematic Wall", category: "Duvar Tasarım", height: "h-[350px]", imagePath: "/images/duvar ünite/59aa69eca6f5c78c2a56caa0a8148e90.jpg" },
+    { id: 404, title: "Premium Wall Unit", category: "Duvar Tasarım", height: "h-[400px]", imagePath: "/images/duvar ünite/8b5bba9055a1aa001679b0b54e195ec4.jpg" },
+    { id: 405, title: "Modern TV Console", category: "Duvar Tasarım", height: "h-[500px]", imagePath: "/images/duvar ünite/a3babff3c7de3a8bcaefbab548492aa3.jpg" },
 
     // OFİS
-    { id: 501, title: "Executive Desk", category: "Ofis", height: "h-[400px]", image: getImagePath("/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg") },
-    { id: 502, title: "Creative Workspace", category: "Ofis", height: "h-[350px]", image: getImagePath("/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg") },
-    { id: 503, title: "Meeting Lounge", category: "Ofis", height: "h-[300px]", image: getImagePath("/images/ofis/d2fea467feae98a0648de5b4bebd7c41.jpg") },
-    { id: 504, title: "Home Office Setup", category: "Ofis", height: "h-[500px]", image: getImagePath("/images/ofis/eb32409e145f0e66b75b8f887f1bdaf2.jpg") },
-    { id: 505, title: "Premium Office", category: "Ofis", height: "h-[450px]", image: getImagePath("/images/ofis/f4058fe2846a7194c32ff71eedcf80b8.jpg") },
+    { id: 501, title: "Executive Desk", category: "Ofis", height: "h-[400px]", imagePath: "/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg" },
+    { id: 502, title: "Creative Workspace", category: "Ofis", height: "h-[350px]", imagePath: "/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg" },
+    { id: 503, title: "Meeting Lounge", category: "Ofis", height: "h-[300px]", imagePath: "/images/ofis/d2fea467feae98a0648de5b4bebd7c41.jpg" },
+    { id: 504, title: "Home Office Setup", category: "Ofis", height: "h-[500px]", imagePath: "/images/ofis/eb32409e145f0e66b75b8f887f1bdaf2.jpg" },
+    { id: 505, title: "Premium Office", category: "Ofis", height: "h-[450px]", imagePath: "/images/ofis/f4058fe2846a7194c32ff71eedcf80b8.jpg" },
 ];
+
+// Convert raw paths to full paths at runtime using getImagePath
+const galleryData = rawGalleryData.map(item => ({
+    ...item,
+    image: getImagePath(item.imagePath)
+}));
 
 const Gallery = () => {
     const [filter, setFilter] = useState('Tümü');

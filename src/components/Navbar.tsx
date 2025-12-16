@@ -155,7 +155,7 @@ const Navbar = () => {
                             {/* Mobile Logo - FULL FILL */}
                             <div className="w-28 h-28 rounded-full overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.3)] mb-12 border border-white/20 shrink-0 bg-black/50 backdrop-blur-sm">
                                 <img
-                                    src="/logo.gif"
+                                    src={getImagePath("/logo.gif")}
                                     alt="LAVORA"
                                     className="w-full h-full object-cover transform scale-110"
                                 />
