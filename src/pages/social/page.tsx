@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import { InstagramCarousel } from '../../components/ui/instagram-carousel';
+import { getImagePath } from '../../lib/assetPath';
 
 // Instagram embed için type
 declare global {
@@ -18,12 +20,87 @@ declare global {
 
 interface InstagramPost {
     id: string;
-    url: string;
+    embedUrl: string;
+    thumbnailUrl: string;
+    caption: string;
     type: 'post' | 'reel';
 }
 
 const SocialMedia = () => {
     const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
+
+    // Instagram Posts - Manuel olarak ekleyin (en son 12-15 post)
+    const rawPosts: InstagramPost[] = [
+        {
+            id: '1',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_1/',
+            thumbnailUrl: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg',
+            caption: 'Lavora Design - Lüks mutfak tasarımı 🏡✨',
+            type: 'post'
+        },
+        {
+            id: '2',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_2/',
+            thumbnailUrl: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg',
+            caption: 'Modern salon takımı ile zarafet ve konfor 🛋️',
+            type: 'post'
+        },
+        {
+            id: '3',
+            embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_1/',
+            thumbnailUrl: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg',
+            caption: 'Yatak odası tasarımı - Reels 🎥',
+            type: 'reel'
+        },
+        {
+            id: '4',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_3/',
+            thumbnailUrl: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg',
+            caption: 'Executive ofis mobilyası ile profesyonel çalışma alanı 💼',
+            type: 'post'
+        },
+        {
+            id: '5',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_4/',
+            thumbnailUrl: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg',
+            caption: 'Modern duvar ünitesi tasarımı 📺',
+            type: 'post'
+        },
+        {
+            id: '6',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_5/',
+            thumbnailUrl: '/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg',
+            caption: 'Premium salon grubu - İtalyan tasarım 🛋️',
+            type: 'post'
+        },
+        {
+            id: '7',
+            embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_2/',
+            thumbnailUrl: '/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg',
+            caption: 'Mutfak dolabı montaj süreci - Reels 🎬',
+            type: 'reel'
+        },
+        {
+            id: '8',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_6/',
+            thumbnailUrl: '/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg',
+            caption: 'Minimalist yatak odası konsepti 🌙',
+            type: 'post'
+        },
+        {
+            id: '9',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_7/',
+            thumbnailUrl: '/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg',
+            caption: 'Lüks ofis tasarımı detayları 🏢',
+            type: 'post'
+        },
+    ];
+
+    // Apply image path transformation
+    const instagramPosts = rawPosts.map(post => ({
+        ...post,
+        thumbnailUrl: getImagePath(post.thumbnailUrl)
+    }));
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -98,72 +175,46 @@ const SocialMedia = () => {
                     </motion.a>
                 </div>
 
-                {/* INSTAGRAM FEED - Dark Theme & Clickable */}
+                {/* INSTAGRAM CAROUSEL - Modern & Animated */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
                     className="mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-playfair text-white mb-6 text-center">
-                        Instagram Sayfamız
-                    </h2>
-                    <p className="text-gray-400 text-center mb-10 max-w-2xl mx-auto">
-                        En son projelerimiz ve tasarımlarımız. İçeriklere tıklayarak sitede görüntüleyin.
-                    </p>
-
-                    {/* Instagram Profile Embed - DARK & Clickable Posts */}
-                    <div className="relative bg-black rounded-2xl p-4 md:p-6 border border-white/10 overflow-hidden">
-                        {/* Overlay to capture clicks */}
-                        <div 
-                            className="absolute inset-0 z-10 cursor-pointer"
-                            onClick={(e) => {
-                                // Instagram post'larına tıklandığında modal aç
-                                const target = e.target as HTMLElement;
-                                const link = target.closest('a');
-                                if (link && link.href.includes('instagram.com/p/')) {
-                                    e.preventDefault();
-                                    setSelectedPost({
-                                        id: Date.now().toString(),
-                                        url: link.href,
-                                        type: 'post'
-                                    });
-                                }
-                            }}
-                            style={{ pointerEvents: 'none' }}
+                    <div className="text-center mb-12">
+                        <motion.span
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="px-4 py-1.5 bg-gold-DEFAULT/10 rounded-full text-gold-DEFAULT text-xs uppercase tracking-widest inline-block"
                         >
-                            <div style={{ pointerEvents: 'auto' }}>
-                                <iframe
-                                    src="https://www.instagram.com/lavoradesing/embed/"
-                                    width="100%"
-                                    height="1000"
-                                    frameBorder="0"
-                                    scrolling="yes"
-                                    allowTransparency={true}
-                                    className="rounded-lg w-full"
-                                    style={{
-                                        border: 'none',
-                                        overflow: 'auto',
-                                        background: '#000000',
-                                        colorScheme: 'dark',
-                                        maxWidth: '1400px',
-                                        margin: '0 auto',
-                                        display: 'block'
-                                    }}
-                                    title="Lavora Design Instagram"
-                                ></iframe>
-                            </div>
-                        </div>
-
-                        {/* Dark Theme CSS */}
-                        <style dangerouslySetInnerHTML={{
-                            __html: `
-                                iframe[src*="instagram.com/embed"] {
-                                    background: #000 !important;
-                                }
-                            `
-                        }} />
+                            Son Paylaşımlarımız
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-3xl md:text-5xl font-playfair text-white mb-4 mt-6"
+                        >
+                            Instagram Galerimiz
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-gray-400 font-montserrat max-w-2xl mx-auto"
+                        >
+                            En son projelerimiz, tasarımlarımız ve ilham verici içeriklerimiz. 
+                            Post'lara tıklayarak detaylı görüntüleyin.
+                        </motion.p>
                     </div>
+
+                    {/* Instagram Carousel Component */}
+                    <InstagramCarousel
+                        posts={instagramPosts}
+                        onPostClick={(post) => setSelectedPost(post)}
+                        className="py-8"
+                    />
 
                     {/* Modal için tıklanabilir overlay (Instagram içerik için) */}
                     {selectedPost && createPortal(
@@ -190,11 +241,20 @@ const SocialMedia = () => {
                                         <i className="ri-close-line text-2xl text-white"></i>
                                     </button>
 
-                                    {/* Instagram Post Embed - DARK THEME */}
-                                    <div className="p-4 overflow-y-auto max-h-[95vh]">
+                                                    {/* Instagram Post Embed - DARK THEME */}
+                                    <div className="p-6 overflow-y-auto max-h-[95vh]">
+                                        <div className="text-center mb-6">
+                                            <h3 className="text-2xl font-playfair text-white mb-2">
+                                                {selectedPost.caption}
+                                            </h3>
+                                            <span className="text-gold-DEFAULT text-sm uppercase tracking-wider">
+                                                {selectedPost.type === 'reel' ? '🎥 Reels' : '📷 Post'}
+                                            </span>
+                                        </div>
+
                                         <blockquote
                                             className="instagram-media"
-                                            data-instgrm-permalink={selectedPost.url}
+                                            data-instgrm-permalink={selectedPost.embedUrl}
                                             data-instgrm-version="14"
                                             data-instgrm-captioned
                                             style={{
@@ -214,15 +274,18 @@ const SocialMedia = () => {
                                         </blockquote>
 
                                         {/* Instagram'da Görüntüle Butonu */}
-                                        <div className="mt-6 text-center">
+                                        <div className="mt-8 text-center">
+                                            <p className="text-gray-400 text-sm mb-4">
+                                                Instagram'da tam boyutlu görmek ve etkileşimde bulunmak için:
+                                            </p>
                                             <a
-                                                href={selectedPost.url}
+                                                href={selectedPost.embedUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg"
+                                                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                                             >
-                                                <i className="ri-instagram-line text-xl"></i>
-                                                Instagram'da Aç
+                                                <i className="ri-instagram-line text-2xl"></i>
+                                                Instagram'da Görüntüle
                                             </a>
                                         </div>
                                     </div>
