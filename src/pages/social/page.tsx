@@ -1,139 +1,13 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
-import { getImagePath } from '../../lib/assetPath';
-
-// Instagram embed script type declaration
-declare global {
-    interface Window {
-        instgrm?: {
-            Embeds: {
-                process: () => void;
-            };
-        };
-    }
-}
-
-interface InstagramEmbed {
-    id: string;
-    type: 'post' | 'reel';
-    embedUrl: string;
-    caption: string;
-    thumbnail?: string;
-}
 
 const SocialMedia = () => {
-    const [selectedPost, setSelectedPost] = useState<InstagramEmbed | null>(null);
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         window.scrollTo(0, 0);
-        
-        // Instagram embed script'ini yükle
-        const script = document.createElement('script');
-        script.src = '//www.instagram.com/embed.js';
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        };
     }, []);
-
-    useEffect(() => {
-        // Embed'leri yenile
-        if (window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
-    }, [selectedPost]);
-
-    // Instagram postları - Manuel olarak ekleniyor
-    // HER YENİ INSTAGRAM PAYLAŞIMINDA BURAYA EKLENMELİ
-    // Instagram post linkini ve thumbnail'ı güncelleyin
-    const rawPosts: InstagramEmbed[] = [
-        {
-            id: '1',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_1/',
-            caption: 'Lavora Design - Lüks mutfak tasarımı 🏡',
-            thumbnail: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg'
-        },
-        {
-            id: '2',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_2/',
-            caption: 'Modern salon takımı ile zarafet ✨',
-            thumbnail: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg'
-        },
-        {
-            id: '3',
-            type: 'reel',
-            embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_1/',
-            caption: 'Yatak odası tasarımı - Reels 🎥',
-            thumbnail: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg'
-        },
-        {
-            id: '4',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_3/',
-            caption: 'Executive ofis mobilyası 💼',
-            thumbnail: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg'
-        },
-        {
-            id: '5',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_4/',
-            caption: 'Modern duvar ünitesi tasarımı 📺',
-            thumbnail: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg'
-        },
-        {
-            id: '6',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_5/',
-            caption: 'Premium salon grubu 🛋️',
-            thumbnail: '/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg'
-        },
-        {
-            id: '7',
-            type: 'reel',
-            embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_2/',
-            caption: 'Mutfak dolabı montaj - Reels 🎬',
-            thumbnail: '/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg'
-        },
-        {
-            id: '8',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_6/',
-            caption: 'Minimalist yatak odası 🌙',
-            thumbnail: '/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg'
-        },
-        {
-            id: '9',
-            type: 'post',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_7/',
-            caption: 'Lüks ofis tasarımı 🏢',
-            thumbnail: '/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg'
-        },
-    ];
-
-    // Apply image path transformation
-    const instagramPosts = rawPosts.map(post => ({
-        ...post,
-        thumbnail: getImagePath(post.thumbnail)
-    }));
-
-    const handlePostClick = (post: InstagramEmbed) => {
-        setSelectedPost(post);
-        setLoading(true);
-    };
-
-    const handleCloseModal = () => {
-        setSelectedPost(null);
-        setLoading(false);
-    };
 
     return (
         <div className="min-h-screen bg-[#0A0A0A] text-white pt-32 pb-20 px-4 sm:px-6">
@@ -160,7 +34,7 @@ const SocialMedia = () => {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-6xl font-playfair text-white mb-6"
                     >
-                        Instagram Paylaşımları
+                        Instagram Paylaşımlarımız
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -168,7 +42,8 @@ const SocialMedia = () => {
                         transition={{ delay: 0.2 }}
                         className="text-gray-400 font-montserrat max-w-2xl mx-auto mb-8"
                     >
-                        En son projelerimiz, tasarımlarımız ve ilham verici içeriklerimiz
+                        En son projelerimiz, tasarımlarımız ve ilham verici içeriklerimiz. 
+                        Yeni paylaşımlarımız otomatik olarak burada görünür.
                     </motion.p>
                     <motion.a
                         initial={{ opacity: 0, y: 20 }}
@@ -184,154 +59,196 @@ const SocialMedia = () => {
                     </motion.a>
                 </div>
 
-                {/* Instagram Posts Grid - Büyük Boyut */}
-                <div className="mb-16">
-                    <h3 className="text-3xl font-playfair text-white mb-4 text-center">
-                        Instagram Galerimiz
-                    </h3>
-                    <p className="text-gray-400 font-montserrat mb-12 text-center max-w-2xl mx-auto">
-                        Son paylaşımlarımıza göz atın. Post'lara tıklayarak detaylı görüntüleyebilirsiniz.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {instagramPosts.map((post, index) => (
-                            <motion.div
-                                key={post.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                onClick={() => handlePostClick(post)}
-                                className="group relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 cursor-pointer hover:border-gold-DEFAULT/50 transition-all duration-300"
-                            >
-                                <img
-                                    src={post.thumbnail}
-                                    alt={post.caption}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                    <p className="text-white font-montserrat text-sm mb-3 line-clamp-2">
-                                        {post.caption}
-                                    </p>
-                                    <div className="flex items-center gap-2 text-gold-DEFAULT">
-                                        <i className={`${post.type === 'reel' ? 'ri-video-line' : 'ri-image-line'} text-xl`}></i>
-                                        <span className="text-xs uppercase tracking-wider">
-                                            {post.type === 'reel' ? 'Reels' : 'Post'}
-                                        </span>
+                {/* ÜCRETSİZ INSTAGRAM FEED - SnapWidget */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className="mb-16"
+                >
+                    <div className="bg-gradient-to-br from-[#0A0A0A] to-[#151515] rounded-2xl p-8 border border-white/10">
+                        <h2 className="text-3xl font-playfair text-white mb-4 text-center">
+                            Son Instagram Paylaşımlarımız
+                        </h2>
+                        <p className="text-gray-400 text-center mb-8 max-w-2xl mx-auto">
+                            Instagram'daki en yeni içeriklerimiz. Tıklayarak detaylı görebilir, videoları izleyebilirsiniz.
+                        </p>
+
+                        {/* SnapWidget Embed Alanı */}
+                        {/* BURAYA WIDGET KODUNU YAPIŞTıRıN */}
+                        <div className="relative min-h-[600px] flex items-center justify-center">
+                            <div className="text-center max-w-2xl mx-auto">
+                                <i className="ri-instagram-line text-6xl text-gold-DEFAULT mb-6 block"></i>
+                                <h3 className="text-2xl font-playfair text-white mb-4">
+                                    🎉 %100 ÜCRETSİZ Instagram Feed
+                                </h3>
+                                <p className="text-gray-400 font-montserrat mb-8">
+                                    2 dakikada kurun, otomatik güncellesin!
+                                </p>
+                                
+                                <div className="bg-[#0A0A0A] border border-white/5 rounded-xl p-8 text-left space-y-6">
+                                    <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-lg p-4">
+                                        <h4 className="text-gold-DEFAULT font-bold text-xl mb-2 flex items-center gap-2">
+                                            <i className="ri-gift-line"></i>
+                                            SnapWidget - Tamamen Ücretsiz!
+                                        </h4>
+                                        <p className="text-gray-300 text-sm">
+                                            ✅ Kredi kartı yok &nbsp; ✅ Kayıt 30 saniye &nbsp; ✅ Otomatik güncelleme
+                                        </p>
                                     </div>
-                                </div>
-                                {post.type === 'reel' && (
-                                    <div className="absolute top-4 right-4">
-                                        <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center">
-                                            <i className="ri-play-fill text-white text-xl"></i>
+
+                                    <h4 className="text-white font-semibold text-lg border-b border-white/10 pb-2">
+                                        📋 HIZLI KURULUM (2 Dakika):
+                                    </h4>
+                                    
+                                    <div className="space-y-4 text-sm">
+                                        <div className="flex gap-3 items-start">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-DEFAULT/20 text-gold-DEFAULT font-bold flex items-center justify-center">1</span>
+                                            <div className="flex-1">
+                                                <p className="text-gray-200 mb-2">
+                                                    <a 
+                                                        href="https://snapwidget.com/widgets/free-instagram-widget" 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="text-purple-400 hover:text-purple-300 underline font-semibold"
+                                                    >
+                                                        SnapWidget sayfasına git
+                                                    </a>
+                                                </p>
+                                                <p className="text-gray-400 text-xs">
+                                                    Ücretsiz Grid veya Slideshow widget'ı seçin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex gap-3 items-start">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-DEFAULT/20 text-gold-DEFAULT font-bold flex items-center justify-center">2</span>
+                                            <div className="flex-1">
+                                                <p className="text-gray-200 mb-2">
+                                                    Instagram hesabınızı bağlayın: <code className="bg-black/50 px-2 py-1 rounded text-purple-400">@lavoradesing</code>
+                                                </p>
+                                                <p className="text-gray-400 text-xs">
+                                                    "Connect Instagram" butonuna tıklayıp giriş yapın
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex gap-3 items-start">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-DEFAULT/20 text-gold-DEFAULT font-bold flex items-center justify-center">3</span>
+                                            <div className="flex-1">
+                                                <p className="text-gray-200 mb-2">
+                                                    Tasarım ayarları:
+                                                </p>
+                                                <ul className="text-gray-400 text-xs space-y-1 ml-4">
+                                                    <li>• Background Color: <span className="text-white">#0A0A0A</span> (siyah)</li>
+                                                    <li>• Layout: Grid veya Slideshow</li>
+                                                    <li>• Responsive: Açık</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex gap-3 items-start">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-DEFAULT/20 text-gold-DEFAULT font-bold flex items-center justify-center">4</span>
+                                            <div className="flex-1">
+                                                <p className="text-gray-200 mb-2">
+                                                    Embed kodunu kopyalayın
+                                                </p>
+                                                <p className="text-gray-400 text-xs">
+                                                    "Get Widget" → Kodu kopyala
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex gap-3 items-start">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-DEFAULT/20 text-gold-DEFAULT font-bold flex items-center justify-center">5</span>
+                                            <div className="flex-1">
+                                                <p className="text-gray-200 mb-2">
+                                                    Kodu yapıştırın:
+                                                </p>
+                                                <div className="bg-black/50 p-3 rounded border border-white/10 overflow-x-auto">
+                                                    <code className="text-purple-400 text-xs">
+                                                        src/pages/social/page.tsx
+                                                    </code>
+                                                    <p className="text-gray-400 text-xs mt-2">
+                                                        Satır 85'e (bu mesajın yerine) widget kodunu yapıştırın
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                )}
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
 
-                {/* Instagram Post Modal */}
-                {selectedPost && createPortal(
-                    <AnimatePresence>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
-                            onClick={handleCloseModal}
-                        >
-                            <motion.div
-                                initial={{ scale: 0.9, y: 50 }}
-                                animate={{ scale: 1, y: 0 }}
-                                exit={{ scale: 0.9, y: 50 }}
-                                transition={{ type: "spring", duration: 0.5 }}
-                                className="relative bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <button
-                                    onClick={handleCloseModal}
-                                    className="absolute top-4 right-4 z-10 w-12 h-12 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center transition-all backdrop-blur-sm"
-                                >
-                                    <i className="ri-close-line text-2xl text-white"></i>
-                                </button>
-
-                                <div className="p-8 overflow-y-auto max-h-[90vh]">
-                                    <div className="text-center mb-6">
-                                        <h3 className="text-2xl font-playfair text-white mb-2">
-                                            {selectedPost.caption}
-                                        </h3>
-                                        <span className="text-gold-DEFAULT text-sm uppercase tracking-wider">
-                                            {selectedPost.type === 'reel' ? '🎥 Reels' : '📷 Post'}
-                                        </span>
-                                    </div>
-
-                                    {/* Instagram Embed */}
-                                    <div className="relative w-full flex justify-center">
-                                        <blockquote
-                                            className="instagram-media"
-                                            data-instgrm-permalink={selectedPost.embedUrl}
-                                            data-instgrm-version="14"
-                                            style={{
-                                                background: '#FFF',
-                                                border: 0,
-                                                borderRadius: '3px',
-                                                boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
-                                                margin: '1px',
-                                                maxWidth: '540px',
-                                                minWidth: '326px',
-                                                padding: 0,
-                                                width: 'calc(100% - 2px)'
-                                            }}
-                                        >
-                                            {loading && (
-                                                <div className="flex items-center justify-center py-20">
-                                                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-DEFAULT"></div>
-                                                </div>
-                                            )}
-                                        </blockquote>
-                                    </div>
-
-                                    <div className="mt-6 text-center">
-                                        <p className="text-gray-400 text-sm mb-4">
-                                            Instagram'da tam boyutlu görmek ve etkileşimde bulunmak için:
-                                        </p>
-                                        <a
-                                            href={selectedPost.embedUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-                                        >
-                                            <i className="ri-instagram-line text-xl"></i>
-                                            Instagram'da Görüntüle
-                                        </a>
+                                    <div className="bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-500/30 rounded-lg p-4 mt-6">
+                                        <div className="flex items-start gap-3">
+                                            <i className="ri-check-double-line text-2xl text-green-400 flex-shrink-0"></i>
+                                            <div>
+                                                <h5 className="text-green-400 font-semibold mb-1">Otomatik Güncelleme</h5>
+                                                <p className="text-gray-400 text-xs">
+                                                    Instagram'a yeni bir şey paylaştığınızda widget otomatik güncellenir. 
+                                                    Hiçbir şey yapmanıza gerek yok!
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </motion.div>
-                        </motion.div>
-                    </AnimatePresence>,
-                    document.body
-                )}
 
-                {/* Social Media Links */}
-                <div className="bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 rounded-2xl p-8 md:p-12 text-center">
-                    <h3 className="text-2xl font-playfair text-white mb-6">
-                        Bizi Takip Edin
+                                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a
+                                        href="https://snapwidget.com/widgets/free-instagram-widget"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                                    >
+                                        <i className="ri-external-link-line text-xl"></i>
+                                        SnapWidget'ı Kullan (Ücretsiz)
+                                    </a>
+                                </div>
+
+                                <p className="text-gray-500 text-xs mt-6">
+                                    💡 <strong>Alternatif:</strong> Behold.so, LightWidget.com da ücretsiz alternatifler
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Instagram İstatistikleri */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 rounded-2xl p-8 md:p-12 text-center"
+                >
+                    <h3 className="text-2xl font-playfair text-white mb-4">
+                        Sosyal Medyada Biz
                     </h3>
                     <p className="text-gray-400 font-montserrat mb-8 max-w-2xl mx-auto">
-                        Sosyal medya hesaplarımızda tasarım ilhamı, proje güncellemeleri ve daha fazlası için bizi takip edin.
+                        Tasarım yolculuğumuzu Instagram'da paylaşıyoruz. 
+                        Yeni projeler, ürünler ve ilham verici içerikler için bizi takip edin!
                     </p>
-                    <div className="flex justify-center gap-4">
+                    
+                    <div className="flex justify-center gap-4 mb-8">
                         <a
                             href="https://www.instagram.com/lavoradesing/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
+                            className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-purple-500/50"
                         >
-                            <i className="ri-instagram-line text-2xl text-white"></i>
+                            <i className="ri-instagram-line text-3xl text-white"></i>
                         </a>
                     </div>
-                </div>
+
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/30 rounded-full border border-white/10">
+                        <span className="text-gray-400 text-sm">Instagram:</span>
+                        <a 
+                            href="https://www.instagram.com/lavoradesing/" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-purple-400 hover:text-purple-300 font-semibold"
+                        >
+                            @lavoradesing
+                        </a>
+                    </div>
+                </motion.div>
             </div>
 
             <Footer />
