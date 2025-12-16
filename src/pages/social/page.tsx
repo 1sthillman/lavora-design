@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import { InstagramCarousel } from '../../components/InstagramCarousel';
 
 
 const SocialMedia = () => {
@@ -95,7 +96,7 @@ const SocialMedia = () => {
                     </div>
 
                     {/* Instagram Native Embed - ÇALIŞAN VERSİYON */}
-                    <div className="bg-gradient-to-br from-[#0A0A0A] to-[#111111] rounded-2xl p-6 border border-white/10">
+                    <div className="bg-gradient-to-br from-[#0A0A0A] to-[#111111] rounded-2xl p-6 border border-white/10 mb-12">
                         <iframe
                             src="https://www.instagram.com/lavoradesing/embed/"
                             width="100%"
@@ -112,6 +113,14 @@ const SocialMedia = () => {
                             }}
                             title="Lavora Design Instagram"
                         ></iframe>
+                    </div>
+
+                    {/* GERÇEK INSTAGRAM CAROUSEL - Posts & Reels */}
+                    <div className="mt-12">
+                        <h3 className="text-2xl md:text-3xl font-playfair text-white mb-8 text-center">
+                            Son Gönderilerimiz & Reels
+                        </h3>
+                        <InstagramCarousel />
                     </div>
                 </motion.div>
 

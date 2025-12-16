@@ -2,17 +2,22 @@
   "username": "lavoradesing",
   "fetchedAt": "2025-12-17T00:00:00.000Z",
   "posts": [
-    {"id": "post1", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post2", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post3", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
-    {"id": "post4", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post5", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post6", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
-    {"id": "post7", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post8", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post9", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
-    {"id": "post10", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post11", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
-    {"id": "post12", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"}
+    {"id": "DSQKDCVjLmJ", "url": "https://www.instagram.com/p/DSQKDCVjLmJ/", "type": "post"},
+    {"id": "DOMdEymDLX7", "url": "https://www.instagram.com/p/DOMdEymDLX7/", "type": "post"},
+    {"id": "DOJE321DNwB", "url": "https://www.instagram.com/p/DOJE321DNwB/", "type": "post"},
+    {"id": "DKweigMMN3W", "url": "https://www.instagram.com/p/DKweigMMN3W/", "type": "reel"},
+    {"id": "DE-xnGdMw4j", "url": "https://www.instagram.com/p/DE-xnGdMw4j/", "type": "post"},
+    {"id": "DE-xLLFs7bx", "url": "https://www.instagram.com/p/DE-xLLFs7bx/", "type": "post"}
+  ],
+  "stories": [
+    {"id": "18089861309303648", "url": "https://www.instagram.com/stories/highlights/18089861309303648/"},
+    {"id": "18044299187489368", "url": "https://www.instagram.com/stories/highlights/18044299187489368/"},
+    {"id": "18051901583239681", "url": "https://www.instagram.com/stories/highlights/18051901583239681/"},
+    {"id": "18081643699676618", "url": "https://www.instagram.com/stories/highlights/18081643699676618/"},
+    {"id": "18034663259452622", "url": "https://www.instagram.com/stories/highlights/18034663259452622/"},
+    {"id": "18238490044304974", "url": "https://www.instagram.com/stories/highlights/18238490044304974/"},
+    {"id": "17996179478733434", "url": "https://www.instagram.com/stories/highlights/17996179478733434/"},
+    {"id": "18034564454597538", "url": "https://www.instagram.com/stories/highlights/18034564454597538/"},
+    {"id": "17905949091088288", "url": "https://www.instagram.com/stories/highlights/17905949091088288/"}
   ]
 }
