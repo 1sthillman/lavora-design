@@ -159,22 +159,30 @@ const Products = () => {
         // Ürün bilgilerini hazırla
         const productName = product.name;
         const productCategory = product.category;
-        const productDescription = product.description;
         
         // GitHub Pages'deki tam görsel URL'si
-        const productImageUrl = product.image.startsWith('http') 
-            ? product.image 
-            : `https://1sthillman.github.io${product.image}`;
+        let productImageUrl = product.image;
+        if (!productImageUrl.startsWith('http')) {
+            // Base URL'yi ekle ve boşlukları düzgün encode et
+            const cleanImagePath = productImageUrl
+                .replace(/\s+/g, '%20') // Boşlukları %20 ile değiştir
+                .replace(/ü/g, '%C3%BC')  // Türkçe ü karakterini encode et
+                .replace(/ö/g, '%C3%B6')  // Türkçe ö karakterini encode et
+                .replace(/ı/g, '%C4%B1')  // Türkçe ı karakterini encode et
+                .replace(/ş/g, '%C5%9F')  // Türkçe ş karakterini encode et
+                .replace(/ğ/g, '%C4%9F')  // Türkçe ğ karakterini encode et
+                .replace(/ç/g, '%C3%A7'); // Türkçe ç karakterini encode et
+            
+            productImageUrl = `https://1sthillman.github.io${cleanImagePath}`;
+        }
         
-        // WhatsApp mesaj metni
-        const message = `Merhaba Lavora Design,
+        // WhatsApp mesaj metni - modern ve şık format
+        const message = `Merhaba Lavora Design 👋
 
-*${productName}* hakkında teklif almak istiyorum.
+*${productName}* hakkında bilgi almak istiyorum.
 
-📦 Kategori: ${productCategory}
-📝 Açıklama: ${productDescription}
-
-🖼️ Ürün Görseli: ${productImageUrl}
+📋 Kategori: ${productCategory}
+🔗 Ürün: ${productImageUrl}
 
 Detaylı bilgi ve fiyat teklifi alabilir miyim?`;
 
