@@ -1,4 +1,4 @@
-const a=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slug:"2025-mobilya-trendleri",category:"Trendler",excerpt:"Yeni yılda ev dekorasyonunda öne çıkan renkler, malzemeler ve tasarım anlayışlarını keşfedin. Doğal dokular ve sürdürülebilir lüks ön planda.",content:`
+import{a}from"./Footer-Co2PjCfN.js";const i=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slug:"2025-mobilya-trendleri",category:"Trendler",excerpt:"Yeni yılda ev dekorasyonunda öne çıkan renkler, malzemeler ve tasarım anlayışlarını keşfedin. Doğal dokular ve sürdürülebilir lüks ön planda.",content:`
             <h2>2025 Mobilya Trendlerine Bakış</h2>
             <p>2025 yılı, mobilya tasarımında doğallığın ve teknolojinin entegre olduğu, sürdürülebilir lüksün ön plana çıktığı bir yıl olacak. Lavora Design olarak, bu yeni dönemde koleksiyonlarımızda öne çıkacak detayları sizler için derledik.</p>
             
@@ -10,7 +10,7 @@ const a=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slu
 
             <h3>3. Toprak Tonları ve Sakinleştirici Renkler</h3>
             <p>Bej, kiremit, zeytin yeşili ve terakota gibi toprak tonları, mekanlarda huzur veren bir etki yaratıyor. Bu renk paleti, özellikle metalik detaylarla (pirinç, bronz) kombinlendiğinde sofistike bir görünüm sunuyor.</p>
-        `,image:"/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg",date:"15 Ocak 2025",author:"Lavora Design Ekibi",readTime:"5 dk"},{id:2,title:"Lüks Mobilya Bakımı: Ahşap ve Deri İçin Altın Kurallar",slug:"luks-mobilya-bakimi",category:"Bakım",excerpt:"Premium mobilyalarınızın ilk günkü ışıltısını koruması için bilmeniz gereken profesyonel bakım ipuçları.",content:`
+        `,image:a("/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg"),date:"15 Ocak 2025",author:"Lavora Design Ekibi",readTime:"5 dk"},{id:2,title:"Lüks Mobilya Bakımı: Ahşap ve Deri İçin Altın Kurallar",slug:"luks-mobilya-bakimi",category:"Bakım",excerpt:"Premium mobilyalarınızın ilk günkü ışıltısını koruması için bilmeniz gereken profesyonel bakım ipuçları.",content:`
             <h2>Premium Mobilyalarınız İçin Bakım Rehberi</h2>
             <p>Özel tasarım mobilyalar birer yatırımdır. Doğru bakım ile bu değerli parçaların ömrünü uzatabilir ve estetik görünümlerini yıllarca koruyabilirsiniz.</p>
 
@@ -32,7 +32,7 @@ const a=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slu
                 <li>Dökülen sıvıları ovalamadan, emici bir bezle tamponlayarak temizleyin.</li>
             </ul>
             </p>
-        `,image:"/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg",date:"22 Ocak 2025",author:"Ahmet Yılmaz - Baş Usta",readTime:"4 dk"},{id:3,title:"Ümraniye'de Özel Tasarım Mobilya Yaptırmanın Avantajları",slug:"umraniye-ozel-tasarim-mobilya",category:"Rehber",excerpt:"Seri üretim yerine neden özel tasarım tercih etmelisiniz? Mekanınıza tam uyum sağlayan çözümler.",content:`
+        `,image:a("/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg"),date:"22 Ocak 2025",author:"Ahmet Yılmaz - Baş Usta",readTime:"4 dk"},{id:3,title:"Ümraniye'de Özel Tasarım Mobilya Yaptırmanın Avantajları",slug:"umraniye-ozel-tasarim-mobilya",category:"Rehber",excerpt:"Seri üretim yerine neden özel tasarım tercih etmelisiniz? Mekanınıza tam uyum sağlayan çözümler.",content:`
             <h2>Neden Özel Tasarım Mobilya?</h2>
             <p>Her ev ve her yaşam tarzı biriciktir. Standart ölçülerdeki seri üretim mobilyalar, her zaman mekanınızın potansiyelini tam olarak ortaya çıkaramayabilir. İşte bu noktada özel tasarım (bespoke) mobilyalar devreye giriyor.</p>
 
@@ -44,5 +44,5 @@ const a=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slu
 
             <h3>3. Kalite ve Dayanıklılık</h3>
             <p>Butik üretimde her parça ustalarımızın elinden özenle çıkar. Seri üretimin aksine, kullanılan malzemelerin kalitesinden ve işçilikten ödün verilmez.</p>
-        `,image:"/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg",date:"1 Şubat 2025",author:"Lavora Design Tasarım Ekibi",readTime:"6 dk"}];export{a as b};
-//# sourceMappingURL=blogData-BCk6VUUq.js.map
+        `,image:a("/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg"),date:"1 Şubat 2025",author:"Lavora Design Tasarım Ekibi",readTime:"6 dk"}];export{i as b};
+//# sourceMappingURL=blogData-CJ2pQ1hY.js.map

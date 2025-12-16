@@ -1,0 +1,41 @@
+/**
+ * Asset path helper for GitHub Pages base path
+ * Ensures all images, videos, and static assets use correct base path
+ */
+
+// Get base path from environment or use default
+const BASE_PATH = import.meta.env.BASE_URL || '/';
+
+/**
+ * Convert relative asset path to absolute path with base URL
+ * @param path - Relative path like "/images/photo.jpg"
+ * @returns Absolute path like "/lavora-design/images/photo.jpg"
+ */
+export function getAssetPath(path: string): string {
+    // Remove leading slash if present
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    
+    // Combine base path with asset path
+    const fullPath = BASE_PATH.endsWith('/') 
+        ? `${BASE_PATH}${cleanPath}` 
+        : `${BASE_PATH}/${cleanPath}`;
+    
+    return fullPath;
+}
+
+/**
+ * Helper for image paths
+ */
+export function getImagePath(path: string): string {
+    return getAssetPath(path);
+}
+
+/**
+ * Helper for video paths
+ */
+export function getVideoPath(path: string): string {
+    return getAssetPath(path);
+}
+
+export default getAssetPath;
+

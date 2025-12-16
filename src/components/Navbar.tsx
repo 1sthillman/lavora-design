@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { getImagePath } from '../lib/assetPath';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -72,7 +73,7 @@ const Navbar = () => {
                             {/* Animated GIF Logo */}
                             <div className="relative flex-shrink-0">
                                 <img
-                                    src="/logo.gif"
+                                    src={getImagePath("/logo.gif")}
                                     alt="LAVORA DESIGN"
                                     className="h-12 w-auto sm:h-14 md:h-16 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300 rounded-2xl shadow-lg shadow-gold-DEFAULT/10"
                                 />

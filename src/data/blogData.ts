@@ -1,3 +1,5 @@
+import { getImagePath } from '../lib/assetPath';
+
 export interface BlogPost {
     id: number;
     title: string;
@@ -31,7 +33,7 @@ export const blogPosts: BlogPost[] = [
             <h3>3. Toprak Tonları ve Sakinleştirici Renkler</h3>
             <p>Bej, kiremit, zeytin yeşili ve terakota gibi toprak tonları, mekanlarda huzur veren bir etki yaratıyor. Bu renk paleti, özellikle metalik detaylarla (pirinç, bronz) kombinlendiğinde sofistike bir görünüm sunuyor.</p>
         `,
-        image: "/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg", // Using existing salon image
+        image: getImagePath("/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg"),
         date: "15 Ocak 2025",
         author: "Lavora Design Ekibi",
         readTime: "5 dk"
@@ -65,7 +67,7 @@ export const blogPosts: BlogPost[] = [
             </ul>
             </p>
         `,
-        image: "/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg", // Using existing office image
+        image: getImagePath("/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg"),
         date: "22 Ocak 2025",
         author: "Ahmet Yılmaz - Baş Usta",
         readTime: "4 dk"
@@ -89,7 +91,7 @@ export const blogPosts: BlogPost[] = [
             <h3>3. Kalite ve Dayanıklılık</h3>
             <p>Butik üretimde her parça ustalarımızın elinden özenle çıkar. Seri üretimin aksine, kullanılan malzemelerin kalitesinden ve işçilikten ödün verilmez.</p>
         `,
-        image: "/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg", // Using existing kitchen image
+        image: getImagePath("/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg"),
         date: "1 Şubat 2025",
         author: "Lavora Design Tasarım Ekibi",
         readTime: "6 dk"

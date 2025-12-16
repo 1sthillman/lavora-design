@@ -1,11 +1,12 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { getVideoPath } from '../../../lib/assetPath';
 
 const videos = [
-    "/videos/Whisk_mzjm0e2mlzjmjjwntqdo2gtlmjjy00cmirgotet.mp4",
-    "/videos/Whisk_ymwnlftn4mwyzgjmtudnkltl1qwy00cmyadotqt.mp4",
-    "/videos/lv_0_20251214215935.mp4",
-    "/videos/lv_0_20251214230758.mp4"
+    getVideoPath("/videos/Whisk_mzjm0e2mlzjmjjwntqdo2gtlmjjy00cmirgotet.mp4"),
+    getVideoPath("/videos/Whisk_ymwnlftn4mwyzgjmtudnkltl1qwy00cmyadotqt.mp4"),
+    getVideoPath("/videos/lv_0_20251214215935.mp4"),
+    getVideoPath("/videos/lv_0_20251214230758.mp4")
 ];
 
 const HeroSection = () => {
