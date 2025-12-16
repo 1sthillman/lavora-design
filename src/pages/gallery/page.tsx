@@ -70,6 +70,17 @@ const Gallery = () => {
         window.scrollTo(0, 0);
     }, []);
 
+    // WhatsApp Teklif Al Fonksiyonu
+    const handleGetQuote = (project: typeof galleryData[0]) => {
+        const phoneNumber = '905375803296';
+        const imageUrl = encodeURIComponent(project.image);
+        const message = encodeURIComponent(
+            `Merhaba! ${project.title} projesi hakkında bilgi almak istiyorum.\n\nKategori: ${project.category}\n\nDetaylı bilgi ve teklif alabilir miyim?`
+        );
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    };
+
     const filteredProjects = filter === 'Tümü'
         ? galleryData
         : galleryData.filter(p => p.category === filter);
@@ -165,15 +176,29 @@ const Gallery = () => {
                             <span className="text-[10px] uppercase tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">Kapat</span>
                             <i className="ri-close-line text-3xl sm:text-4xl"></i>
                         </button>
-                        <motion.img
+                        <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.5, ease: "easeOut" }}
-                            src={selectedImage.image}
-                            alt={selectedImage.title}
-                            className="max-h-[85vh] max-w-[95vw] object-contain shadow-2xl shadow-black/50 border border-white/5"
+                            className="relative max-h-[85vh] max-w-[95vw] flex flex-col items-center"
                             onClick={(e) => e.stopPropagation()}
-                        />
+                        >
+                            <img
+                                src={selectedImage.image}
+                                alt={selectedImage.title}
+                                className="max-h-[70vh] w-auto object-contain shadow-2xl shadow-black/50 border border-white/5 rounded-lg"
+                            />
+                            
+                            {/* Teklif Al Butonu */}
+                            <button 
+                                onClick={() => handleGetQuote(selectedImage)}
+                                className="mt-6 px-8 py-4 bg-gold-DEFAULT text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light hover:scale-105 transition-all duration-300 shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50 flex items-center justify-center gap-2"
+                            >
+                                <i className="ri-whatsapp-line text-xl"></i>
+                                Teklif Al
+                            </button>
+                        </motion.div>
+                        
                         <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 text-left z-[110] pointer-events-none">
                             <p className="text-gold-DEFAULT text-xs tracking-[0.3em] uppercase mb-2">{selectedImage.category}</p>
                             <h3 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-white font-light">{selectedImage.title}</h3>

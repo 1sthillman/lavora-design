@@ -399,7 +399,7 @@ Detaylı bilgi ve fiyat teklifi alabilir miyim?`;
 
                                     <button 
                                         onClick={() => handleGetQuote(selectedProduct)}
-                                        className="w-full mt-8 px-8 py-4 bg-gold-DEFAULT text-[#0A0A0A] font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light hover:scale-105 transition-all duration-300 shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50 flex items-center justify-center gap-2 animate-pulse-subtle"
+                                        className="w-full mt-8 px-8 py-4 bg-gold-DEFAULT text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light hover:scale-105 transition-all duration-300 shadow-lg shadow-gold-DEFAULT/30 hover:shadow-gold-DEFAULT/50 flex items-center justify-center gap-2 animate-pulse-subtle"
                                     >
                                         <i className="ri-whatsapp-line text-xl"></i>
                                         Teklif Al
