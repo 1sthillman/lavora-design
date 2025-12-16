@@ -21,9 +21,9 @@ export function InstagramCarousel({
 }: InstagramCarouselProps) {
     return (
         <div className={cn("relative flex w-full flex-col items-center justify-center overflow-hidden", className)}>
-            <div className="group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:60s]">
+            <div className="group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:80s]">
                 <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
-                    {[...Array(3)].map((_, setIndex) => (
+                    {[...Array(5)].map((_, setIndex) => (
                         posts.map((post, i) => (
                             <button
                                 key={`${setIndex}-${i}`}

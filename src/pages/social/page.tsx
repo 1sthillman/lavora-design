@@ -29,70 +29,110 @@ interface InstagramPost {
 const SocialMedia = () => {
     const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
 
-    // Instagram Posts - Manuel olarak ekleyin (en son 12-15 post)
+    // ========================================
+    // 📸 GERÇEK INSTAGRAM POST'LARINIZI BURAYA EKLEYİN
+    // ========================================
+    // 
+    // HER YENİ INSTAGRAM PAYLAŞIMINIZ İÇİN:
+    // 1. Instagram'da post'u açın
+    // 2. "..." → "Embed" → Link'i kopyalayın
+    // 3. Post görselini indirip /public/images/instagram/ klasörüne kaydedin
+    // 4. Aşağıdaki diziye ekleyin
+    //
+    // ÖRNEK:
+    // {
+    //     id: '1',
+    //     embedUrl: 'https://www.instagram.com/p/DKweigMMN3W/', // GERÇEK LINK
+    //     thumbnailUrl: '/images/instagram/post1.jpg', // İNDİRDİĞİNİZ GÖRSEL
+    //     caption: 'Gerçek Instagram caption',
+    //     type: 'post' // veya 'reel'
+    // }
+    //
     const rawPosts: InstagramPost[] = [
+        // ŞU ANLIK PLACEHOLDER'LAR - GERÇEK POST'LARINIZLA DEĞİŞTİRİN
         {
             id: '1',
-            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_1/',
+            embedUrl: 'https://www.instagram.com/p/DKweigMMN3W/',
             thumbnailUrl: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg',
-            caption: 'Lavora Design - Lüks mutfak tasarımı 🏡✨',
+            caption: 'Lüks mutfak tasarımı ✨',
             type: 'post'
         },
         {
             id: '2',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_2/',
             thumbnailUrl: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg',
-            caption: 'Modern salon takımı ile zarafet ve konfor 🛋️',
+            caption: 'Modern salon takımı 🛋️',
             type: 'post'
         },
         {
             id: '3',
             embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_1/',
             thumbnailUrl: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg',
-            caption: 'Yatak odası tasarımı - Reels 🎥',
+            caption: 'Yatak odası tasarımı 🌙',
             type: 'reel'
         },
         {
             id: '4',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_3/',
             thumbnailUrl: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg',
-            caption: 'Executive ofis mobilyası ile profesyonel çalışma alanı 💼',
+            caption: 'Executive ofis mobilyası 💼',
             type: 'post'
         },
         {
             id: '5',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_4/',
             thumbnailUrl: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg',
-            caption: 'Modern duvar ünitesi tasarımı 📺',
+            caption: 'Duvar ünitesi tasarımı 📺',
             type: 'post'
         },
         {
             id: '6',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_5/',
             thumbnailUrl: '/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg',
-            caption: 'Premium salon grubu - İtalyan tasarım 🛋️',
+            caption: 'Premium salon grubu 🛋️',
             type: 'post'
         },
         {
             id: '7',
             embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_2/',
             thumbnailUrl: '/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg',
-            caption: 'Mutfak dolabı montaj süreci - Reels 🎬',
+            caption: 'Mutfak montajı - Reels 🎬',
             type: 'reel'
         },
         {
             id: '8',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_6/',
             thumbnailUrl: '/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg',
-            caption: 'Minimalist yatak odası konsepti 🌙',
+            caption: 'Minimalist yatak odası 🌟',
             type: 'post'
         },
         {
             id: '9',
             embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_7/',
             thumbnailUrl: '/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg',
-            caption: 'Lüks ofis tasarımı detayları 🏢',
+            caption: 'Lüks ofis tasarımı 🏢',
             type: 'post'
+        },
+        {
+            id: '10',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_8/',
+            thumbnailUrl: '/images/salon/3e3abb5cb94c4c88dc34b84e6f5b572a.jpg',
+            caption: 'Modern oturma grubu ☕',
+            type: 'post'
+        },
+        {
+            id: '11',
+            embedUrl: 'https://www.instagram.com/p/YOUR_POST_ID_9/',
+            thumbnailUrl: '/images/mutfak-görsel/6ef949fdc55e51f821e49f64c34dc92c.jpg',
+            caption: 'Mutfak detayları 🍳',
+            type: 'post'
+        },
+        {
+            id: '12',
+            embedUrl: 'https://www.instagram.com/reel/YOUR_REEL_ID_3/',
+            thumbnailUrl: '/images/yatak odası/7aec9929da51a2d6b5fb13bf4f61f887.jpg',
+            caption: 'Yatak odası dekorasyon - Reels 🎥',
+            type: 'reel'
         },
     ];
 
