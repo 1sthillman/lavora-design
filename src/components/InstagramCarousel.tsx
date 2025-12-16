@@ -110,8 +110,7 @@ export function InstagramCarousel() {
                                         </div>
                                     </div>
                                 </button>
-                            ))
-                        )}
+                        ))}
                     </div>
                     
                     {/* İkinci Set - Klon (Sonsuz Döngü İçin) */}
@@ -145,8 +144,7 @@ export function InstagramCarousel() {
                                         </div>
                                     </div>
                                 </button>
-                            ))
-                        )}
+                        ))}
                     </div>
                 </div>
 
