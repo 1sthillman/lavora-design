@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import { InstagramCarousel } from '../../components/InstagramCarousel';
 
 // Instagram embed için type
 declare global {
@@ -25,7 +25,6 @@ interface InstagramPost {
 }
 
 const SocialMedia = () => {
-    const [selectedPost, setSelectedPost] = useState<{ url: string; } | null>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -100,7 +99,7 @@ const SocialMedia = () => {
                     </motion.a>
                 </div>
 
-                {/* INSTAGRAM PROFILE FEED - Otomatik & Basit */}
+                {/* AKILLI INSTAGRAM CAROUSEL - Build Time Scraping */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -129,28 +128,13 @@ const SocialMedia = () => {
                             transition={{ delay: 0.2 }}
                             className="text-gray-400 font-montserrat max-w-2xl mx-auto"
                         >
-                            Instagram'daki tüm paylaşımlarımız. Otomatik güncellenir, hiçbir kurulum gerekmiyor!
+                            Instagram post'larımız testimonials gibi carousel formatında. 
+                            Build yapılırken otomatik güncellenir!
                         </motion.p>
                     </div>
 
-                    {/* Instagram Native Embed - HİÇ KURULUM YOK */}
-                    <div className="bg-black rounded-2xl p-6 border border-white/10">
-                        <iframe
-                            src="https://www.instagram.com/lavoradesing/embed/"
-                            width="100%"
-                            height="1200"
-                            frameBorder="0"
-                            scrolling="yes"
-                            allowTransparency={true}
-                            className="rounded-xl mx-auto"
-                            style={{
-                                maxWidth: '100%',
-                                background: '#000',
-                                colorScheme: 'dark'
-                            }}
-                            title="Lavora Design Instagram"
-                        ></iframe>
-                    </div>
+                    {/* Instagram Carousel Component */}
+                    <InstagramCarousel />
 
 
                 </motion.div>
