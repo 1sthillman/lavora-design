@@ -4,6 +4,7 @@ import type { RouteObject } from 'react-router-dom';
 const Home = lazy(() => import('../pages/home/page'));
 const Products = lazy(() => import('../pages/products/page'));
 const Gallery = lazy(() => import('../pages/gallery/page'));
+const SocialMedia = lazy(() => import('../pages/social/page'));
 const SourceCode = lazy(() => import('../pages/source-code/page'));
 const Blog = lazy(() => import('../pages/blog/page'));
 const BlogDetail = lazy(() => import('../pages/blog/detail'));
@@ -16,6 +17,7 @@ const routes: RouteObject[] = [
     { path: '/blog', element: <Blog /> },
     { path: '/blog/:slug', element: <BlogDetail /> },
     { path: '/gallery', element: <Gallery /> },
+    { path: '/social', element: <SocialMedia /> },
     { path: '/source-code', element: <SourceCode /> },
     { path: '*', element: <NotFound /> },
 ];

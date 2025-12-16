@@ -55,6 +55,7 @@ const Navbar = () => {
         { name: 'Ana Sayfa', path: '/' },
         { name: 'Ürünler', path: '/products' },
         { name: 'Galeri', path: '/gallery' },
+        { name: 'Sosyal Medya', path: '/social' },
         { name: 'İletişim', path: '/#contact', onClick: scrollToContact },
     ];
 
