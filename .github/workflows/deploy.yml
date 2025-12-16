@@ -6,12 +6,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,15 +43,29 @@ jobs:
           rm -f out/*.md out/**/*.md || true
           find out -name "*.md" -type f -delete || true
 
-      - name: Copy Jekyll config to disable processing
+      - name: Add .nojekyll file
         run: |
-          cp _config.yml out/_config.yml 2>/dev/null || echo "# Jekyll disabled" > out/_config.yml
-          echo "" > out/.nojekyll
+          touch out/.nojekyll
+          echo "Jekyll processing disabled" > out/.nojekyll
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: out
-          branch: gh-pages
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: './out'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
