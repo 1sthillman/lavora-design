@@ -112,37 +112,57 @@ const SocialMedia = () => {
                         En son projelerimiz ve tasarımlarımız. İçeriklere tıklayarak sitede görüntüleyin.
                     </p>
 
-                    {/* Instagram Profile Embed - DARK THEME & GENİŞ */}
-                    <div className="bg-black rounded-2xl p-2 md:p-4 border border-white/10 overflow-hidden">
-                        <div className="relative w-full mx-auto" style={{ maxWidth: '1400px', minHeight: '1000px' }}>
-                            <iframe
-                                src="https://www.instagram.com/lavoradesing/embed/"
-                                width="100%"
-                                height="1000"
-                                frameBorder="0"
-                                scrolling="yes"
-                                allowTransparency={true}
-                                className="rounded-lg w-full"
-                                style={{
-                                    border: 'none',
-                                    overflow: 'auto',
-                                    background: '#000000',
-                                    colorScheme: 'dark'
-                                }}
-                                title="Lavora Design Instagram"
-                                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                            ></iframe>
-
-                            {/* Custom CSS for Dark Theme */}
-                            <style dangerouslySetInnerHTML={{
-                                __html: `
-                                    iframe[src*="instagram.com/embed"] {
-                                        filter: invert(0);
-                                        background: #000 !important;
-                                    }
-                                `
-                            }} />
+                    {/* Instagram Profile Embed - DARK & Clickable Posts */}
+                    <div className="relative bg-black rounded-2xl p-4 md:p-6 border border-white/10 overflow-hidden">
+                        {/* Overlay to capture clicks */}
+                        <div 
+                            className="absolute inset-0 z-10 cursor-pointer"
+                            onClick={(e) => {
+                                // Instagram post'larına tıklandığında modal aç
+                                const target = e.target as HTMLElement;
+                                const link = target.closest('a');
+                                if (link && link.href.includes('instagram.com/p/')) {
+                                    e.preventDefault();
+                                    setSelectedPost({
+                                        id: Date.now().toString(),
+                                        url: link.href,
+                                        type: 'post'
+                                    });
+                                }
+                            }}
+                            style={{ pointerEvents: 'none' }}
+                        >
+                            <div style={{ pointerEvents: 'auto' }}>
+                                <iframe
+                                    src="https://www.instagram.com/lavoradesing/embed/"
+                                    width="100%"
+                                    height="1000"
+                                    frameBorder="0"
+                                    scrolling="yes"
+                                    allowTransparency={true}
+                                    className="rounded-lg w-full"
+                                    style={{
+                                        border: 'none',
+                                        overflow: 'auto',
+                                        background: '#000000',
+                                        colorScheme: 'dark',
+                                        maxWidth: '1400px',
+                                        margin: '0 auto',
+                                        display: 'block'
+                                    }}
+                                    title="Lavora Design Instagram"
+                                ></iframe>
+                            </div>
                         </div>
+
+                        {/* Dark Theme CSS */}
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
+                                iframe[src*="instagram.com/embed"] {
+                                    background: #000 !important;
+                                }
+                            `
+                        }} />
                     </div>
 
                     {/* Modal için tıklanabilir overlay (Instagram içerik için) */}
@@ -212,25 +232,6 @@ const SocialMedia = () => {
                         document.body
                     )}
 
-                    {/* Info */}
-                    <div className="mt-8 bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-500/30 rounded-xl p-6">
-                        <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                                <i className="ri-check-double-line text-2xl text-green-400"></i>
-                            </div>
-                            <div className="flex-1">
-                                <h3 className="text-green-400 font-semibold text-lg mb-2">
-                                    ✅ Otomatik Dark Theme Feed
-                                </h3>
-                                <ul className="text-gray-300 text-sm space-y-1">
-                                    <li>• Tüm Instagram paylaşımlarınız <strong className="text-white">siyah tema</strong> ile görünür</li>
-                                    <li>• Yeni post/reel paylaşınca <strong className="text-white">otomatik</strong> güncellenir</li>
-                                    <li>• Geniş ve modern görünüm</li>
-                                    <li>• Hiç 3. parti yok - sadece Instagram</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </motion.div>
 
                 {/* Instagram İstatistikleri */}
