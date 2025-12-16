@@ -29,7 +29,10 @@ jobs:
       - name: Build
         env:
           BASE_PATH: /lavora-design/
-        run: npm run build
+        run: |
+          npm run build
+          echo "Build completed. Checking base path in index.html..."
+          cat out/index.html | grep -o 'src="[^"]*"' || true
 
       - name: Remove problematic markdown files from build
         run: |
