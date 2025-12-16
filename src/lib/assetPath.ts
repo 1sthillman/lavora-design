@@ -3,8 +3,11 @@
  * Ensures all images, videos, and static assets use correct base path
  */
 
-// Get base path from environment or use default
-const BASE_PATH = import.meta.env.BASE_URL || '/';
+// Declare global __BASE_PATH__ from vite config
+declare const __BASE_PATH__: string;
+
+// Get base path from vite config define
+const BASE_PATH = __BASE_PATH__ || '/';
 
 /**
  * Convert relative asset path to absolute path with base URL
