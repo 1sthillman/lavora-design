@@ -3,11 +3,8 @@
  * Ensures all images, videos, and static assets use correct base path
  */
 
-// Declare global __BASE_PATH__ from vite config
-declare const __BASE_PATH__: string;
-
-// Get base path from vite config define
-const BASE_PATH = __BASE_PATH__ || '/';
+// Vite automatically injects BASE_URL from the 'base' config
+const BASE_PATH = import.meta.env.BASE_URL;
 
 /**
  * Convert relative asset path to absolute path with base URL
@@ -15,6 +12,11 @@ const BASE_PATH = __BASE_PATH__ || '/';
  * @returns Absolute path like "/lavora-design/images/photo.jpg"
  */
 export function getAssetPath(path: string): string {
+    // If path already includes base path, return as is
+    if (path.startsWith(BASE_PATH)) {
+        return path;
+    }
+    
     // Remove leading slash if present
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     

@@ -1,4 +1,4 @@
-import{a}from"./Footer-Co2PjCfN.js";const i=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slug:"2025-mobilya-trendleri",category:"Trendler",excerpt:"Yeni yılda ev dekorasyonunda öne çıkan renkler, malzemeler ve tasarım anlayışlarını keşfedin. Doğal dokular ve sürdürülebilir lüks ön planda.",content:`
+import{a}from"./Footer-BymtktB-.js";const i=[{id:1,title:"2025 Mobilya Trendleri: Lüks ve Konforun Buluşması",slug:"2025-mobilya-trendleri",category:"Trendler",excerpt:"Yeni yılda ev dekorasyonunda öne çıkan renkler, malzemeler ve tasarım anlayışlarını keşfedin. Doğal dokular ve sürdürülebilir lüks ön planda.",content:`
             <h2>2025 Mobilya Trendlerine Bakış</h2>
             <p>2025 yılı, mobilya tasarımında doğallığın ve teknolojinin entegre olduğu, sürdürülebilir lüksün ön plana çıktığı bir yıl olacak. Lavora Design olarak, bu yeni dönemde koleksiyonlarımızda öne çıkacak detayları sizler için derledik.</p>
             
@@ -45,4 +45,4 @@ import{a}from"./Footer-Co2PjCfN.js";const i=[{id:1,title:"2025 Mobilya Trendleri
             <h3>3. Kalite ve Dayanıklılık</h3>
             <p>Butik üretimde her parça ustalarımızın elinden özenle çıkar. Seri üretimin aksine, kullanılan malzemelerin kalitesinden ve işçilikten ödün verilmez.</p>
         `,image:a("/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg"),date:"1 Şubat 2025",author:"Lavora Design Tasarım Ekibi",readTime:"6 dk"}];export{i as b};
-//# sourceMappingURL=blogData-CJ2pQ1hY.js.map
+//# sourceMappingURL=blogData-C3WvyMRB.js.map
