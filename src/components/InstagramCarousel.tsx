@@ -32,10 +32,18 @@ export function InstagramCarousel() {
         };
     }, []);
 
-    // Modal açıldığında embed'i yenile
+    // Modal açıldığında embed'i yenile ve scroll yap
     useEffect(() => {
-        if (selectedPost && (window as any).instgrm) {
-            (window as any).instgrm.Embeds.process();
+        if (selectedPost) {
+            // Üste scroll yap
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Instagram embed'i yenile
+            if ((window as any).instgrm) {
+                setTimeout(() => {
+                    (window as any).instgrm.Embeds.process();
+                }, 100);
+            }
         }
     }, [selectedPost]);
 
@@ -77,29 +85,38 @@ export function InstagramCarousel() {
                                     onClick={() => setSelectedPost(post)}
                                     className="group/card relative flex-none w-[320px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
                                 >
-                                    {/* Instagram Placeholder */}
-                                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-900/20 to-pink-900/20">
-                                        <div className="text-center">
-                                            <i className={`${post.type === 'reel' ? 'ri-video-line' : 'ri-image-line'} text-6xl text-gold-DEFAULT mb-4`}></i>
-                                            <p className="text-white font-montserrat text-sm px-4">
-                                                Instagram {post.type === 'reel' ? 'Reels' : 'Post'}
-                                            </p>
-                                            <p className="text-gray-400 text-xs mt-2">
-                                                Görüntülemek için tıklayın
-                                            </p>
-                                        </div>
-
-                                        {/* Type Badge */}
-                                        <div className="absolute top-4 right-4">
-                                            <div className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/20">
-                                                <span className="text-gold-DEFAULT text-xs uppercase font-semibold tracking-wider">
-                                                    {post.type === 'reel' ? 'Reels' : 'Post'}
-                                                </span>
+                                    {/* Instagram Preview Embed */}
+                                    <div className="relative w-full h-full">
+                                        <iframe
+                                            src={`${post.url}embed/captioned/`}
+                                            className="w-full h-full border-0"
+                                            style={{ 
+                                                background: '#000',
+                                                pointerEvents: 'none' // Tıklamaları engelle, sadece görsel
+                                            }}
+                                            scrolling="no"
+                                            allowTransparency={true}
+                                        />
+                                        
+                                        {/* Overlay - Click to View */}
+                                        <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                                            <div className="opacity-0 group-hover/card:opacity-100 transition-all duration-300 text-center">
+                                                <div className="px-4 py-2 bg-gold-DEFAULT/90 rounded-full">
+                                                    <span className="text-black font-semibold text-sm">
+                                                        Görüntüle
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        {/* Shine Effect */}
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000" />
+                                        {/* Type Badge */}
+                                        <div className="absolute top-4 right-4 z-10">
+                                            <div className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-sm border border-gold-DEFAULT/40">
+                                                <span className="text-gold-DEFAULT text-xs uppercase font-semibold tracking-wider">
+                                                    {post.type === 'reel' ? '▶ REELS' : '📷 POST'}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </button>
                             ))
@@ -115,13 +132,13 @@ export function InstagramCarousel() {
             {/* Modal */}
             {selectedPost && (
                 <div
-                    className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+                    className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex items-start justify-center p-4 overflow-y-auto"
                     onClick={() => setSelectedPost(null)}
                 >
                     <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="relative bg-black rounded-2xl max-w-2xl w-full border border-white/20"
+                        initial={{ scale: 0.9, opacity: 0, y: 50 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        className="relative bg-black rounded-2xl max-w-2xl w-full border border-white/20 my-8"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
