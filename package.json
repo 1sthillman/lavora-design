@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/fetch-instagram.js",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",

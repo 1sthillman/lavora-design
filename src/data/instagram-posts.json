@@ -1,66 +1,18 @@
 {
   "username": "lavoradesing",
-  "fetchedAt": "2025-12-16T21:25:03.173Z",
+  "fetchedAt": "2025-12-17T00:00:00.000Z",
   "posts": [
-    {
-      "id": "post1",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post2",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post3",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "reel"
-    },
-    {
-      "id": "post4",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post5",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post6",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "reel"
-    },
-    {
-      "id": "post7",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post8",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post9",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "reel"
-    },
-    {
-      "id": "post10",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post11",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "post"
-    },
-    {
-      "id": "post12",
-      "url": "https://www.instagram.com/lavoradesing/",
-      "type": "reel"
-    }
+    {"id": "post1", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post2", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post3", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
+    {"id": "post4", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post5", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post6", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
+    {"id": "post7", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post8", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post9", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"},
+    {"id": "post10", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post11", "url": "https://www.instagram.com/lavoradesing/", "type": "post"},
+    {"id": "post12", "url": "https://www.instagram.com/lavoradesing/", "type": "reel"}
   ]
 }
