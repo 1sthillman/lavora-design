@@ -110,11 +110,11 @@ const Gallery = () => {
                         <button
                             key={cat}
                             onClick={() => setFilter(cat)}
-                            className={`text - xs sm: text - sm uppercase tracking - [0.2em] transition - all duration - 300 relative group py - 2 font - medium
+                            className={`text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 relative group py-2 font-medium
                         ${filter === cat ? 'text-gold-DEFAULT' : 'text-white/40 hover:text-white'} `}
                         >
                             {cat}
-                            <span className={`absolute bottom - 0 left - 0 w - full h - [1px] bg - gold - DEFAULT transform origin - left transition - transform duration - 300 ${filter === cat ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'} `}></span>
+                            <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-gold-DEFAULT transform origin-left transition-transform duration-300 ${filter === cat ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'} `}></span>
                         </button>
                     ))}
                 </div>
@@ -130,7 +130,7 @@ const Gallery = () => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-                                className={`break-inside - avoid group relative rounded - sm overflow - hidden cursor - pointer ${project.height} mb - 4`}
+                                className={`break-inside-avoid group relative rounded-sm overflow-hidden cursor-pointer ${project.height} mb-4`}
                                 onClick={() => setSelectedImage(project)}
                             >
                                 <img

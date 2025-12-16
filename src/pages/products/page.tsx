@@ -16,8 +16,8 @@ interface Product {
     price?: string;
 }
 
-// Kategori tipleri
-type Category = 'Tümü' | 'Koltuk Takımları' | 'Yatak Odası' | 'Yemek Odası' | 'TV Ünitesi' | 'Aksesuar';
+// Kategori tipleri - ürünlerdeki gerçek kategorilerle eşleşmeli
+type Category = 'Tümü' | 'Salon' | 'Mutfak' | 'Yatak Odası' | 'Ofis' | 'Duvar';
 
 const Products = () => {
     const { category } = useParams<{ category: string }>();
@@ -26,20 +26,20 @@ const Products = () => {
 
     // Map URL to Display Category
     const categoryMap: { [key: string]: Category } = {
-        'koltuk-takimlari': 'Koltuk Takımları',
+        'salon': 'Salon',
+        'mutfak': 'Mutfak',
         'yatak-odasi': 'Yatak Odası',
-        'yemek-odasi': 'Yemek Odası',
-        'tv-unitesi': 'TV Ünitesi',
-        'aksesuar': 'Aksesuar'
+        'ofis': 'Ofis',
+        'duvar': 'Duvar'
     };
 
     // Reverse map for navigation
     const reverseCategoryMap: { [key: string]: string } = {
-        'Koltuk Takımları': 'koltuk-takimlari',
+        'Salon': 'salon',
+        'Mutfak': 'mutfak',
         'Yatak Odası': 'yatak-odasi',
-        'Yemek Odası': 'yemek-odasi',
-        'TV Ünitesi': 'tv-unitesi',
-        'Aksesuar': 'aksesuar',
+        'Ofis': 'ofis',
+        'Duvar': 'duvar',
         'Tümü': ''
     };
 
@@ -48,7 +48,7 @@ const Products = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-    const categories: Category[] = ['Tümü', 'Koltuk Takımları', 'Yatak Odası', 'Yemek Odası', 'TV Ünitesi', 'Aksesuar'];
+    const categories: Category[] = ['Tümü', 'Salon', 'Mutfak', 'Yatak Odası', 'Ofis', 'Duvar'];
 
     // Raw product data with image paths - converted to full paths at runtime
     const rawProducts = [
@@ -95,17 +95,37 @@ const Products = () => {
         image: getImagePath(product.imagePath)
     }));
 
-    // Sync URL with State
+    // Sync URL with State - check both route param and query string
     useEffect(() => {
+        // First check route parameter
         if (category) {
             const mappedCategory = categoryMap[category];
             if (mappedCategory) {
                 setSelectedCategory(mappedCategory);
+                return;
             }
-        } else {
-            setSelectedCategory('Tümü');
         }
-    }, [category]);
+        
+        // Fallback to query string
+        const queryCategory = searchParams.get('category');
+        if (queryCategory) {
+            // Map query category to display category
+            const queryCategoryMap: { [key: string]: Category } = {
+                'Mutfak': 'Mutfak',
+                'Salon': 'Salon',
+                'Yatak Odası': 'Yatak Odası',
+                'Ofis': 'Ofis',
+                'Duvar': 'Duvar'
+            };
+            const mappedQueryCategory = queryCategoryMap[queryCategory];
+            if (mappedQueryCategory) {
+                setSelectedCategory(mappedQueryCategory);
+                return;
+            }
+        }
+        
+        setSelectedCategory('Tümü');
+    }, [category, searchParams]);
 
     // Sync Product Modal with URL
     useEffect(() => {
