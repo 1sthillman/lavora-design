@@ -5,6 +5,7 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import { getImagePath } from '../../lib/assetPath';
 
 interface Product {
     id: number;
@@ -49,45 +50,50 @@ const Products = () => {
 
     const categories: Category[] = ['Tümü', 'Koltuk Takımları', 'Yatak Odası', 'Yemek Odası', 'TV Ünitesi', 'Aksesuar'];
 
-    const products: Product[] = [
-
-
+    // Raw product data with image paths - converted to full paths at runtime
+    const rawProducts = [
         // MUTFAK
-        { id: 1, name: 'Modern Mutfak Tasarımı', category: 'Mutfak', description: 'Premium mutfak dolap sistemi, modern tasarım', image: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg' },
-        { id: 2, name: 'Lüks Mutfak Dolabı', category: 'Mutfak', description: 'Ahşap detaylı mutfak sistemi', image: '/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg' },
-        { id: 3, name: 'Minimalist Mutfak', category: 'Mutfak', description: 'Temiz çizgiler, gizli kulplar ve modern estetik', image: '/images/mutfak-görsel/6eaca09af50be3e224e066f1d06c10ab.jpg' },
-        { id: 4, name: 'Klasik Mutfak Dolabı', category: 'Mutfak', description: 'Geleneksel tasarım, ahşap detaylar', image: '/images/mutfak-görsel/75475696254d72baebcf235ed19f1b7d.jpg' },
-        { id: 5, name: 'Premium Mutfak Sistemi', category: 'Mutfak', description: 'Entegre cihazlar ve modern dolaplar', image: '/images/mutfak-görsel/98cb00646c145981ec077db90a7e7217.jpg' },
-        { id: 6, name: 'Ada Mutfak Tasarımı', category: 'Mutfak', description: 'Mermer tezgah ve ada ünitesi', image: '/images/mutfak-görsel/ac2ecb14623202cc8a099a3b968d7978.jpg' },
-        { id: 7, name: 'MAT MUTFAK Dolabı', category: 'Mutfak', description: 'MAT lake kaplama, modern çizgiler', image: '/images/mutfak-görsel/c162ea3a1da8980cf7c1689fedd268f7.jpg' },
-        { id: 8, name: 'Klasik Mutfak Sistemi', category: 'Mutfak', description: 'Klasik Mutfak Sistemi, geniş depolama', image: '/images/mutfak-görsel/c4100faed51ad904824c744cb668eec3.jpg' },
+        { id: 1, name: 'Modern Mutfak Tasarımı', category: 'Mutfak', description: 'Premium mutfak dolap sistemi, modern tasarım', imagePath: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg' },
+        { id: 2, name: 'Lüks Mutfak Dolabı', category: 'Mutfak', description: 'Ahşap detaylı mutfak sistemi', imagePath: '/images/mutfak-görsel/4f0129548c499268c1127a6d5e75d8c3.jpg' },
+        { id: 3, name: 'Minimalist Mutfak', category: 'Mutfak', description: 'Temiz çizgiler, gizli kulplar ve modern estetik', imagePath: '/images/mutfak-görsel/6eaca09af50be3e224e066f1d06c10ab.jpg' },
+        { id: 4, name: 'Klasik Mutfak Dolabı', category: 'Mutfak', description: 'Geleneksel tasarım, ahşap detaylar', imagePath: '/images/mutfak-görsel/75475696254d72baebcf235ed19f1b7d.jpg' },
+        { id: 5, name: 'Premium Mutfak Sistemi', category: 'Mutfak', description: 'Entegre cihazlar ve modern dolaplar', imagePath: '/images/mutfak-görsel/98cb00646c145981ec077db90a7e7217.jpg' },
+        { id: 6, name: 'Ada Mutfak Tasarımı', category: 'Mutfak', description: 'Mermer tezgah ve ada ünitesi', imagePath: '/images/mutfak-görsel/ac2ecb14623202cc8a099a3b968d7978.jpg' },
+        { id: 7, name: 'MAT MUTFAK Dolabı', category: 'Mutfak', description: 'MAT lake kaplama, modern çizgiler', imagePath: '/images/mutfak-görsel/c162ea3a1da8980cf7c1689fedd268f7.jpg' },
+        { id: 8, name: 'Klasik Mutfak Sistemi', category: 'Mutfak', description: 'Klasik Mutfak Sistemi, geniş depolama', imagePath: '/images/mutfak-görsel/c4100faed51ad904824c744cb668eec3.jpg' },
         // SALON
-        { id: 9, name: 'Modern Oturma Grubu', category: 'Salon', description: 'Contemporary salon takımı', image: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg' },
-        { id: 10, name: 'Lüks Salon Takımı', category: 'Salon', description: 'Premium kumaş kaplı koltuk seti', image: '/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg' },
-        { id: 11, name: 'Minimalist Salon', category: 'Salon', description: 'Temiz çizgili modern oturma grubu', image: '/images/salon/3e978f7b380e102f014e4b780158564b.jpg' },
-        { id: 12, name: 'Klasik Salon Seti', category: 'Salon', description: 'Zarif ve şık salon mobilyası', image: '/images/salon/5ab571e66ee70b434a230d65b5d096db.jpg' },
-        { id: 13, name: 'Premium Koltuk Takımı', category: 'Salon', description: 'Yüksek konforlu salon grubu', image: '/images/salon/7289417b31c47191b99e5d4586e316c3.jpg' },
-        { id: 14, name: 'Modern L Koltuk', category: 'Salon', description: 'L tipi modüler koltuk sistemi', image: '/images/salon/8a6a40625ab22c183d22850b8e8b01d0.jpg' },
-        { id: 15, name: 'Şık Salon Grubu', category: 'Salon', description: 'Zarif tasarım, konforlu oturma', image: '/images/salon/90b527b3d2654b5614a9255927c03dc5.jpg' },
+        { id: 9, name: 'Modern Oturma Grubu', category: 'Salon', description: 'Contemporary salon takımı', imagePath: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg' },
+        { id: 10, name: 'Lüks Salon Takımı', category: 'Salon', description: 'Premium kumaş kaplı koltuk seti', imagePath: '/images/salon/2fc6ec2b075c5c30ad2f16ff15f68bd4.jpg' },
+        { id: 11, name: 'Minimalist Salon', category: 'Salon', description: 'Temiz çizgili modern oturma grubu', imagePath: '/images/salon/3e978f7b380e102f014e4b780158564b.jpg' },
+        { id: 12, name: 'Klasik Salon Seti', category: 'Salon', description: 'Zarif ve şık salon mobilyası', imagePath: '/images/salon/5ab571e66ee70b434a230d65b5d096db.jpg' },
+        { id: 13, name: 'Premium Koltuk Takımı', category: 'Salon', description: 'Yüksek konforlu salon grubu', imagePath: '/images/salon/7289417b31c47191b99e5d4586e316c3.jpg' },
+        { id: 14, name: 'Modern L Koltuk', category: 'Salon', description: 'L tipi modüler koltuk sistemi', imagePath: '/images/salon/8a6a40625ab22c183d22850b8e8b01d0.jpg' },
+        { id: 15, name: 'Şık Salon Grubu', category: 'Salon', description: 'Zarif tasarım, konforlu oturma', imagePath: '/images/salon/90b527b3d2654b5614a9255927c03dc5.jpg' },
         // YATAK ODASI
-        { id: 16, name: 'Modern Yatak Odası', category: 'Yatak Odası', description: 'Minimal tasarım yatak odası seti', image: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg' },
-        { id: 17, name: 'Lüks Yatak Başlığı', category: 'Yatak Odası', description: 'Kapitone detaylı yatak başlığı', image: '/images/yatak odası/4650c4e9e72bb127e0782992fb326570.jpg' },
-        { id: 18, name: 'Premium Yatak Seti', category: 'Yatak Odası', description: 'Ahşap detaylı yatak odası', image: '/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg' },
-        { id: 19, name: 'Modern Yatak Odası', category: 'Yatak Odası', description: 'Geniş dolap ve yatak seti', image: '/images/yatak odası/63c264ac6f904920bdf67b384e29a49c.jpg' },
-        { id: 20, name: 'Klasik Yatak Odası', category: 'Yatak Odası', description: 'Zarif yatak odası mobilyası', image: '/images/yatak odası/80f3de31c6ec080fcd8626047e8bfe3a.jpg' },
-        { id: 21, name: 'Giyinme Odası', category: 'Yatak Odası', description: 'Modern ve sade tasarım', image: '/images/yatak odası/8616a57a0afdda27d3ca47ea4f03052b.jpg' },
+        { id: 16, name: 'Modern Yatak Odası', category: 'Yatak Odası', description: 'Minimal tasarım yatak odası seti', imagePath: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg' },
+        { id: 17, name: 'Lüks Yatak Başlığı', category: 'Yatak Odası', description: 'Kapitone detaylı yatak başlığı', imagePath: '/images/yatak odası/4650c4e9e72bb127e0782992fb326570.jpg' },
+        { id: 18, name: 'Premium Yatak Seti', category: 'Yatak Odası', description: 'Ahşap detaylı yatak odası', imagePath: '/images/yatak odası/5ad06ee85682e7897130840d6ac9934a.jpg' },
+        { id: 19, name: 'Modern Yatak Odası', category: 'Yatak Odası', description: 'Geniş dolap ve yatak seti', imagePath: '/images/yatak odası/63c264ac6f904920bdf67b384e29a49c.jpg' },
+        { id: 20, name: 'Klasik Yatak Odası', category: 'Yatak Odası', description: 'Zarif yatak odası mobilyası', imagePath: '/images/yatak odası/80f3de31c6ec080fcd8626047e8bfe3a.jpg' },
+        { id: 21, name: 'Giyinme Odası', category: 'Yatak Odası', description: 'Modern ve sade tasarım', imagePath: '/images/yatak odası/8616a57a0afdda27d3ca47ea4f03052b.jpg' },
         // OFİS
-        { id: 22, name: 'Executive Ofis Masası', category: 'Ofis', description: 'Yönetici masası, premium kalite', image: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg' },
-        { id: 23, name: 'Modern Çalışma Masası', category: 'Ofis', description: 'Minimalist ofis masası', image: '/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg' },
-        { id: 24, name: 'Modern Ofis Masası', category: 'Ofis', description: 'Büyük toplantı masası sistemi', image: '/images/ofis/d2fea467feae98a0648de5b4bebd7c41.jpg' },
-        { id: 25, name: 'Ofis Mobilyası', category: 'Ofis', description: 'Komple ofis donanımı', image: '/images/ofis/eb32409e145f0e66b75b8f887f1bdaf2.jpg' },
-        { id: 26, name: 'Premium Ofis Seti', category: 'Ofis', description: 'Lüks ofis mobilya seti', image: '/images/ofis/f4058fe2846a7194c32ff71eedcf80b8.jpg' },
+        { id: 22, name: 'Executive Ofis Masası', category: 'Ofis', description: 'Yönetici masası, premium kalite', imagePath: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg' },
+        { id: 23, name: 'Modern Çalışma Masası', category: 'Ofis', description: 'Minimalist ofis masası', imagePath: '/images/ofis/b0f0e076406eacf7ea78401f3e174312.jpg' },
+        { id: 24, name: 'Modern Ofis Masası', category: 'Ofis', description: 'Büyük toplantı masası sistemi', imagePath: '/images/ofis/d2fea467feae98a0648de5b4bebd7c41.jpg' },
+        { id: 25, name: 'Ofis Mobilyası', category: 'Ofis', description: 'Komple ofis donanımı', imagePath: '/images/ofis/eb32409e145f0e66b75b8f887f1bdaf2.jpg' },
+        { id: 26, name: 'Premium Ofis Seti', category: 'Ofis', description: 'Lüks ofis mobilya seti', imagePath: '/images/ofis/f4058fe2846a7194c32ff71eedcf80b8.jpg' },
         // DUVAR
-        { id: 27, name: 'Modern TV Ünitesi', category: 'Duvar', description: 'Minimalist duvar ünitesi', image: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg' },
-        { id: 28, name: 'Klasik Duvar Dolabı', category: 'Duvar', description: 'Ahşap detaylı duvar sistemi', image: '/images/duvar ünite/44383f98ed663ce4418e6560dc5350a6.jpg' },
-        { id: 29, name: 'TV Ünitesi Premium', category: 'Duvar', description: 'Entegre duvar sistemi', image: '/images/duvar ünite/59aa69eca6f5c78c2a56caa0a8148e90.jpg' },
-        { id: 30, name: 'Lüks Duvar Ünitesi Tv', category: 'Duvar', description: 'Premium duvar mobilyası', image: '/images/duvar ünite/8b5bba9055a1aa001679b0b54e195ec4.jpg' },
+        { id: 27, name: 'Modern TV Ünitesi', category: 'Duvar', description: 'Minimalist duvar ünitesi', imagePath: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg' },
+        { id: 28, name: 'Klasik Duvar Dolabı', category: 'Duvar', description: 'Ahşap detaylı duvar sistemi', imagePath: '/images/duvar ünite/44383f98ed663ce4418e6560dc5350a6.jpg' },
+        { id: 29, name: 'TV Ünitesi Premium', category: 'Duvar', description: 'Entegre duvar sistemi', imagePath: '/images/duvar ünite/59aa69eca6f5c78c2a56caa0a8148e90.jpg' },
+        { id: 30, name: 'Lüks Duvar Ünitesi Tv', category: 'Duvar', description: 'Premium duvar mobilyası', imagePath: '/images/duvar ünite/8b5bba9055a1aa001679b0b54e195ec4.jpg' },
     ];
+
+    // Convert raw paths to full paths at runtime using getImagePath
+    const products: Product[] = rawProducts.map(product => ({
+        ...product,
+        image: getImagePath(product.imagePath)
+    }));
 
     // Sync URL with State
     useEffect(() => {
@@ -152,7 +158,7 @@ const Products = () => {
         "@context": "https://schema.org/",
         "@type": "Product",
         "name": selectedProduct.name,
-        "image": "https://lavoradesign.com" + selectedProduct.image,
+        "image": selectedProduct.image.startsWith('http') ? selectedProduct.image : `https://lavoradesign.com${selectedProduct.image}`,
         "description": selectedProduct.description,
         "brand": {
             "@type": "Brand",

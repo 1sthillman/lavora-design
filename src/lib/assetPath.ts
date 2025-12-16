@@ -6,9 +6,6 @@
 // Vite automatically injects BASE_URL from the 'base' config
 const BASE_PATH = import.meta.env.BASE_URL;
 
-// Debug: Log BASE_PATH on initialization
-console.log('[AssetPath] BASE_PATH:', BASE_PATH);
-
 /**
  * Convert relative asset path to absolute path with base URL
  * @param path - Relative path like "/images/photo.jpg"
@@ -17,7 +14,6 @@ console.log('[AssetPath] BASE_PATH:', BASE_PATH);
 export function getAssetPath(path: string): string {
     // If path already includes base path, return as is
     if (path.startsWith(BASE_PATH)) {
-        console.log('[AssetPath] Path already has base:', path);
         return path;
     }
     
@@ -29,7 +25,6 @@ export function getAssetPath(path: string): string {
         ? `${BASE_PATH}${cleanPath}` 
         : `${BASE_PATH}/${cleanPath}`;
     
-    console.log('[AssetPath] Input:', path, '→ Output:', fullPath);
     return fullPath;
 }
 

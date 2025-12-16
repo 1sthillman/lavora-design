@@ -1,43 +1,51 @@
 import { motion } from 'framer-motion';
+import { getImagePath } from '../../../lib/assetPath';
 
 const CollectionsSection = () => {
-    const collections = [
+    // Raw collection data with image paths - converted to full paths at runtime
+    const rawCollections = [
         {
             id: 1,
             title: 'Mutfak',
             description: 'Modern ve klasik mutfak tasarımları',
-            image: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg',
+            imagePath: '/images/mutfak-görsel/2affba172e571c35714b4d0c77e63562.jpg',
             link: '/products?category=Mutfak',
         },
         {
             id: 2,
             title: 'Salon',
             description: 'Şık oturma grupları ve aksesuarlar',
-            image: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg',
+            imagePath: '/images/salon/1edd0fc0589731acb619c7d0c5c4a2e6.jpg',
             link: '/products?category=Salon',
         },
         {
             id: 3,
             title: 'Yatak Odası',
             description: 'Konforlu ve zarif yatak odası mobilyaları',
-            image: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg',
+            imagePath: '/images/yatak odası/348eac05693386e7cc24c32eab2b68b4.jpg',
             link: '/products?category=Yatak Odası',
         },
         {
             id: 4,
             title: 'Ofis',
             description: 'Profesyonel çalışma alanları',
-            image: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg',
+            imagePath: '/images/ofis/47c6bbdf513bdffd25e3a941513220f2.jpg',
             link: '/products?category=Ofis',
         },
         {
             id: 5,
             title: 'Duvar Ünite',
             description: 'Modern duvar tasarımları',
-            image: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg',
+            imagePath: '/images/duvar ünite/0b7b05410e735a9a89ff029cc0343651.jpg',
             link: '/products?category=Duvar',
         },
     ];
+
+    // Convert raw paths to full paths at runtime using getImagePath
+    const collections = rawCollections.map(collection => ({
+        ...collection,
+        image: getImagePath(collection.imagePath)
+    }));
 
     return (
         <section className="relative py-24 bg-gradient-to-br from-matte via-nardo-dark to-matte">
