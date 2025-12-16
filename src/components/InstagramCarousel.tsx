@@ -74,16 +74,17 @@ export function InstagramCarousel() {
 
     return (
         <>
-            {/* Carousel - Testimonials Gibi Marquee */}
+            {/* Carousel - Testimonials Gibi Marquee - SONSUZ DÖNGÜ */}
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
-                <div className="group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:80s]">
+                <div className="group flex overflow-hidden p-2 [--gap:1rem] sm:[--gap:1.5rem] [gap:var(--gap)] flex-row [--duration:60s]">
+                    {/* İlk Set - Asıl İçerik */}
                     <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
-                        {[...Array(4)].map((_, setIndex) => (
+                        {posts.map((post, i) => (
                             posts.map((post, i) => (
                                 <button
-                                    key={`${setIndex}-${i}`}
+                                    key={`set1-${i}`}
                                     onClick={() => setSelectedPost(post)}
-                                    className="group/card relative flex-none w-[320px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
+                                    className="group/card relative flex-none w-[280px] sm:w-[320px] md:w-[350px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
                                 >
                                     {/* Instagram Preview Embed */}
                                     <div className="relative w-full h-full">
@@ -108,19 +109,45 @@ export function InstagramCarousel() {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {/* Type Badge */}
-                                        <div className="absolute top-4 right-4 z-10">
-                                            <div className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-sm border border-gold-DEFAULT/40">
-                                                <span className="text-gold-DEFAULT text-xs uppercase font-semibold tracking-wider">
-                                                    {post.type === 'reel' ? '▶ REELS' : '📷 POST'}
-                                                </span>
+                                    </div>
+                                </button>
+                            ))
+                        )}
+                    </div>
+                    
+                    {/* İkinci Set - Klon (Sonsuz Döngü İçin) */}
+                    <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]" aria-hidden="true">
+                        {posts.map((post, i) => (
+                                <button
+                                    key={`set2-${i}`}
+                                    onClick={() => setSelectedPost(post)}
+                                    className="group/card relative flex-none w-[280px] sm:w-[320px] md:w-[350px] h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#151515] to-[#0A0A0A] border border-white/10 hover:border-gold-DEFAULT/40 transition-all duration-500 shadow-2xl hover:shadow-gold-DEFAULT/20 cursor-pointer"
+                                >
+                                    <div className="relative w-full h-full">
+                                        <iframe
+                                            src={`${post.url}embed/captioned/`}
+                                            className="w-full h-full border-0"
+                                            style={{ 
+                                                background: '#000',
+                                                pointerEvents: 'none'
+                                            }}
+                                            scrolling="no"
+                                            allowTransparency={true}
+                                        />
+                                        
+                                        <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                                            <div className="opacity-0 group-hover/card:opacity-100 transition-all duration-300 text-center">
+                                                <div className="px-4 py-2 bg-gold-DEFAULT/90 rounded-full">
+                                                    <span className="text-black font-semibold text-sm">
+                                                        Görüntüle
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </button>
                             ))
-                        ))}
+                        )}
                     </div>
                 </div>
 
