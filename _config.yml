@@ -1,0 +1,9 @@
+# Jekyll'i tamamen devre dışı bırak
+exclude:
+  - "*.md"
+  - "**/*.md"
+  - "PRD.MD"
+  - "SOURCE.MD"
+  - "README.md"
+  - "src/**/*.md"
+

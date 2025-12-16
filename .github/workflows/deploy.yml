@@ -31,6 +31,16 @@ jobs:
           BASE_PATH: /lavora-design/
         run: npm run build
 
+      - name: Remove problematic markdown files from build
+        run: |
+          rm -f out/*.md out/**/*.md || true
+          find out -name "*.md" -type f -delete || true
+
+      - name: Copy Jekyll config to disable processing
+        run: |
+          cp _config.yml out/_config.yml 2>/dev/null || echo "# Jekyll disabled" > out/_config.yml
+          echo "" > out/.nojekyll
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
