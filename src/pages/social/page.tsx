@@ -5,49 +5,12 @@ import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import { InstagramCarousel } from '../../components/InstagramCarousel';
 
-// Instagram embed için type
-declare global {
-    interface Window {
-        instgrm?: {
-            Embeds: {
-                process: () => void;
-            };
-        };
-    }
-}
-
-interface InstagramPost {
-    id: string;
-    embedUrl: string;
-    thumbnailUrl: string;
-    caption: string;
-    type: 'post' | 'reel';
-}
 
 const SocialMedia = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
-        // Instagram embed script yükle
-        const script = document.createElement('script');
-        script.src = '//www.instagram.com/embed.js';
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            if (document.body.contains(script)) {
-                document.body.removeChild(script);
-            }
-        };
     }, []);
-
-    useEffect(() => {
-        // Modal açıldığında embed'leri yükle
-        if (selectedPost && window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
-    }, [selectedPost]);
 
     return (
         <div className="min-h-screen bg-[#0A0A0A] text-white pt-32 pb-20 px-4 sm:px-6">
