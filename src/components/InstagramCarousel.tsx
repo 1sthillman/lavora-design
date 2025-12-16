@@ -80,7 +80,6 @@ export function InstagramCarousel() {
                     {/* İlk Set - Asıl İçerik */}
                     <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
                         {posts.map((post, i) => (
-                            posts.map((post, i) => (
                                 <button
                                     key={`set1-${i}`}
                                     onClick={() => setSelectedPost(post)}
