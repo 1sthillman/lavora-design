@@ -12,6 +12,12 @@ export function InstagramCarousel() {
     const [selectedPost, setSelectedPost] = useState<InstagramPost | null>(null);
     const posts: InstagramPost[] = instagramData.posts || [];
 
+    // Debug log
+    useEffect(() => {
+        console.log('📸 Instagram Posts:', posts.length, 'post yüklendi');
+        console.log('📦 Instagram Data:', instagramData);
+    }, [posts]);
+
     // Instagram embed script yükle
     useEffect(() => {
         const script = document.createElement('script');
