@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
-import { InstagramCarousel } from '../../components/InstagramCarousel';
 
 
 const SocialMedia = () => {
@@ -62,7 +61,7 @@ const SocialMedia = () => {
                     </motion.a>
                 </div>
 
-                {/* AKILLI INSTAGRAM CAROUSEL - Build Time Scraping */}
+                {/* INSTAGRAM FEED - BASİT VE OTOMATİK */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -91,15 +90,29 @@ const SocialMedia = () => {
                             transition={{ delay: 0.2 }}
                             className="text-gray-400 font-montserrat max-w-2xl mx-auto"
                         >
-                            Instagram post'larımız testimonials gibi carousel formatında. 
-                            Build yapılırken otomatik güncellenir!
+                            Instagram'daki tüm paylaşımlarımız. Otomatik güncellenir!
                         </motion.p>
                     </div>
 
-                    {/* Instagram Carousel Component */}
-                    <InstagramCarousel />
-
-
+                    {/* Instagram Native Embed - ÇALIŞAN VERSİYON */}
+                    <div className="bg-gradient-to-br from-[#0A0A0A] to-[#111111] rounded-2xl p-6 border border-white/10">
+                        <iframe
+                            src="https://www.instagram.com/lavoradesing/embed/"
+                            width="100%"
+                            height="1100"
+                            frameBorder="0"
+                            scrolling="yes"
+                            allowTransparency={true}
+                            className="rounded-xl mx-auto"
+                            style={{
+                                maxWidth: '100%',
+                                background: '#000',
+                                colorScheme: 'dark',
+                                border: 'none'
+                            }}
+                            title="Lavora Design Instagram"
+                        ></iframe>
+                    </div>
                 </motion.div>
 
                 {/* Instagram İstatistikleri */}
