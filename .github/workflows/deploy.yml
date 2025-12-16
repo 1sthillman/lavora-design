@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -25,10 +27,14 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build
+        env:
+          BASE_PATH: /lavora-design/
         run: npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: out # The folder the action should deploy.
-          branch: gh-pages # The branch the action should deploy to.
+          folder: out
+          branch: gh-pages
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
