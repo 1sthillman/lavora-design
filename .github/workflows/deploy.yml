@@ -48,6 +48,11 @@ jobs:
           touch out/.nojekyll
           echo "Jekyll processing disabled" > out/.nojekyll
 
+      - name: Copy index.html to 404.html for SPA routing
+        run: |
+          cp out/index.html out/404.html
+          echo "404.html created for GitHub Pages SPA routing"
+
       - name: Verify images and videos exist
         run: |
           echo "Checking for images and videos..."

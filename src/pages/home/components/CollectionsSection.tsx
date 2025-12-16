@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { getImagePath } from '../../../lib/assetPath';
 
 const CollectionsSection = () => {
@@ -61,33 +62,34 @@ const CollectionsSection = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                     {collections.map((collection, index) => (
-                        <motion.a
+                        <motion.div
                             key={collection.id}
-                            href={collection.link}
                             whileHover={{ y: -10 }}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="group relative h-[400px] overflow-hidden rounded-sm cursor-pointer"
+                            className="group relative h-[400px] overflow-hidden rounded-sm"
                         >
-                            <img
-                                src={collection.image}
-                                alt={collection.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                            <Link to={collection.link} className="block absolute inset-0">
+                                <img
+                                    src={collection.image}
+                                    alt={collection.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
 
-                            <div className="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 className="text-2xl font-playfair text-white mb-2">{collection.title}</h3>
-                                <p className="text-gray-300 text-xs font-montserrat mb-4 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300">
-                                    {collection.description}
-                                </p>
-                                <div className="px-4 py-2 bg-gold-DEFAULT/10 border border-gold-DEFAULT/30 text-gold-DEFAULT text-xs uppercase tracking-widest inline-block rounded-full group-hover:bg-gold-DEFAULT group-hover:text-matte transition-all">
-                                    Keşfet <i className="ri-arrow-right-line ml-1"></i>
+                                <div className="absolute bottom-0 left-0 p-6 w-full">
+                                    <h3 className="text-2xl font-playfair text-white mb-2">{collection.title}</h3>
+                                    <p className="text-gray-300 text-xs font-montserrat mb-4 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300">
+                                        {collection.description}
+                                    </p>
+                                    <div className="px-4 py-2 bg-gold-DEFAULT/10 border border-gold-DEFAULT/30 text-gold-DEFAULT text-xs uppercase tracking-widest inline-block rounded-full group-hover:bg-gold-DEFAULT group-hover:text-matte transition-all">
+                                        Keşfet <i className="ri-arrow-right-line ml-1"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.a>
+                            </Link>
+                        </motion.div>
                     ))}
                 </div>
             </div>

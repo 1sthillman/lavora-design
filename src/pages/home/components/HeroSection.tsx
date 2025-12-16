@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { getVideoPath } from '../../../lib/assetPath';
 
 const HeroSection = () => {
@@ -90,12 +91,12 @@ const HeroSection = () => {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-md px-4"
                 >
-                    <a href="/products" className="px-6 sm:px-10 py-3 sm:py-4 bg-gold-DEFAULT text-matte font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-gold-light transition-colors transform hover:scale-105 duration-300 whitespace-nowrap">
+                    <Link to="/products" className="px-6 sm:px-10 py-3 sm:py-4 bg-gold-DEFAULT text-matte font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-gold-light transition-colors transform hover:scale-105 duration-300 whitespace-nowrap">
                         Koleksiyonu Keşfet
-                    </a>
-                    <a href="/gallery" className="px-6 sm:px-10 py-3 sm:py-4 border border-white/20 text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-white/10 transition-colors backdrop-blur-sm whitespace-nowrap">
+                    </Link>
+                    <Link to="/gallery" className="px-6 sm:px-10 py-3 sm:py-4 border border-white/20 text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-white/10 transition-colors backdrop-blur-sm whitespace-nowrap">
                         Projelerimizi İncele
-                    </a>
+                    </Link>
                 </motion.div>
 
                 <motion.div
